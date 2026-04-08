@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,500;1,6..72,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-bg: #010E24;
+  --color-surface: #111524;
+  --color-surface-raised: #1b1f2c;
+  --color-surface-contrast: #262a37;
+
+  --color-primary: #ffb59d;
+  --color-primary-strong: #ff946f;
+  --color-secondary: #edb1ff;
+  --color-secondary-soft: #f6d4ff;
+  --color-accent: #f3bf26;
+
+  --color-text-main: #dfe2f3;
+  --color-text-muted: #b6bbd1;
+  --color-text-dim: #8b90a8;
+
+  --color-line-subtle: rgba(255, 181, 157, 0.2);
+  --color-line-strong: rgba(237, 177, 255, 0.32);
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --font-label: 'Space Grotesk', 'Trebuchet MS', sans-serif;
+
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background-color: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(74% 62% at 16% 14%, rgba(157, 80, 187, 0.14), transparent 72%),
+    radial-gradient(70% 58% at 84% 16%, rgba(255, 159, 103, 0.14), transparent 74%),
+    radial-gradient(68% 60% at 48% 66%, rgba(157, 80, 187, 0.1), transparent 78%),
+    radial-gradient(58% 52% at 66% 52%, rgba(255, 159, 103, 0.11), transparent 77%),
+    linear-gradient(180deg, rgba(1, 14, 36, 0.98), rgba(1, 14, 36, 1));
+  color: var(--color-text-main);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(255, 181, 157, 0.34);
+  color: #150f0b;
+}
