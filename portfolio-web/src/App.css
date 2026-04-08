@@ -350,6 +350,8 @@
   text-align: left;
   padding: 2.7rem 0.4rem 2.1rem;
   margin-top: 0.9rem;
+  min-height: calc(100vh - 6.4rem);
+  min-height: calc(100dvh - 6.4rem);
   border-radius: 0;
   border: 0;
   background: transparent;
@@ -358,6 +360,9 @@
   -webkit-backdrop-filter: none;
   position: relative;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-section > * {
@@ -418,23 +423,6 @@
 
 .hero-intro-title {
   text-wrap: balance;
-}
-
-.hero-intro-title--typing {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.08em;
-  min-height: 1.12em;
-}
-
-.hero-intro-title__caret {
-  width: 0.07em;
-  min-width: 2px;
-  height: 0.92em;
-  border-radius: 1px;
-  background: currentColor;
-  transform: translateY(0.05em);
-  animation: caretBlink 1s step-end infinite;
 }
 
 .hero-role {
@@ -1076,18 +1064,6 @@
   }
 }
 
-@keyframes caretBlink {
-  0%,
-  45% {
-    opacity: 1;
-  }
-
-  46%,
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes sectionRise {
   from {
     opacity: 0;
@@ -1158,6 +1134,8 @@
 
   .hero-section {
     padding: 2.1rem 0.15rem 1.75rem;
+    min-height: calc(100vh - 5.6rem);
+    min-height: calc(100dvh - 5.6rem);
     text-align: center;
   }
 
@@ -1272,7 +1250,6 @@
   .mobile-nav a,
   .header-resume,
   .mobile-resume,
-  .hero-intro-title__caret,
   .hero-section::after,
   .skills-signal__track,
   .experience-node__sigil,

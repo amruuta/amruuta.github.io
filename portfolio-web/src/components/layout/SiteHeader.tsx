@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface NavItem {
   id: string;
@@ -13,14 +13,86 @@ interface SiteHeaderProps {
 
 const SiteHeader = ({ name, items, resumeUrl }: SiteHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSectionId, setActiveSectionId] = useState("");
+  const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
   const isResumeExternal = /^https?:\/\//i.test(resumeUrl);
 
   const closeMenu = () => setMenuOpen(false);
 
+  const handleNavClick = (id: string) => {
+    setActiveSectionId(id);
+    closeMenu();
+  };
+
+  const handleBrandClick = () => {
+    setActiveSectionId("");
+    closeMenu();
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined" || sectionIds.length === 0) {
+      return;
+    }
+
+    const validIds = new Set(sectionIds);
+    const hashId = window.location.hash.replace("#", "");
+
+    if (validIds.has(hashId)) {
+      setActiveSectionId(hashId);
+    } else if (hashId === "home" || hashId === "") {
+      setActiveSectionId("");
+    }
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (sections.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleEntries.length === 0) {
+          return;
+        }
+
+        const nextActive = visibleEntries[0].target.id;
+        setActiveSectionId((current) => (current === nextActive ? current : nextActive));
+      },
+      {
+        rootMargin: "-24% 0px -58% 0px",
+        threshold: [0.1, 0.2, 0.35, 0.5, 0.7],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    const handleHashChange = () => {
+      const nextHashId = window.location.hash.replace("#", "");
+      if (validIds.has(nextHashId)) {
+        setActiveSectionId(nextHashId);
+      } else if (nextHashId === "home" || nextHashId === "") {
+        setActiveSectionId("");
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, [sectionIds]);
+
   return (
     <header className="site-header">
       <nav className="top-nav" aria-label="Main">
-        <a href="#home" className="brand" onClick={closeMenu}>
+        <a href="#home" className="brand" onClick={handleBrandClick}>
           {name}
         </a>
 
@@ -28,8 +100,9 @@ const SiteHeader = ({ name, items, resumeUrl }: SiteHeaderProps) => {
           {items.map((item) => (
             <li key={item.id}>
               <a
-                className={`nav-link ${item.id === "about" ? "nav-link--active" : ""}`.trim()}
+                className={`nav-link ${item.id === activeSectionId ? "nav-link--active" : ""}`.trim()}
                 href={`#${item.id}`}
+                onClick={() => handleNavClick(item.id)}
               >
                 {item.label}
               </a>
@@ -65,7 +138,11 @@ const SiteHeader = ({ name, items, resumeUrl }: SiteHeaderProps) => {
       >
         {items.map((item) => (
           <li key={item.id}>
-            <a href={`#${item.id}`} onClick={closeMenu}>
+            <a
+              className={item.id === activeSectionId ? "nav-link--active" : undefined}
+              href={`#${item.id}`}
+              onClick={() => handleNavClick(item.id)}
+            >
               {item.label}
             </a>
           </li>
