@@ -9,11 +9,8 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-screen flex items-center pt-16 overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, #FFB5A7 0%, #FFE5B4 25%, #FFD4B4 50%, #E8D4F8 75%, #D4C5F8 100%)',
-      }}
     >
-      <Container className="w-full relative py-12">
+      <Container className="w-full relative py-2">
         <motion.div 
           className="w-full"
           style={{ maxWidth: '900px', margin: '0 auto' }}
@@ -48,7 +45,7 @@ export default function Hero() {
           <motion.div 
             variants={fadeInUp}
             custom={0.2}
-            style={{ marginTop: '24px', display: 'flex', justifyContent: 'center' }}
+            style={{ marginTop: '12px', display: 'flex', justifyContent: 'center' }}
           >
             <div style={{ maxWidth: '650px', width: '100%' }}>
               <HeroTerminal />
@@ -62,7 +59,7 @@ export default function Hero() {
               lineHeight: '1.75',
               maxWidth: '600px',
               margin: '0 auto',
-              marginTop: '30px',
+              marginTop: '12px',
               letterSpacing: '-0.2px',
             }}
             variants={fadeInUp}
@@ -76,7 +73,7 @@ export default function Hero() {
           {/* CTAs with micro-interactions */}
           <motion.div 
             className="flex flex-wrap gap-4 justify-center"
-            style={{ marginTop: '32px' }}
+            style={{ marginTop: '14px' }}
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
@@ -111,8 +108,8 @@ export default function Hero() {
             className="flex flex-wrap gap-6 justify-center text-[0.85rem] font-medium text-black"
             style={{
               borderTop: '4px solid #000000',
-              marginTop: '48px',
-              paddingTop: '24px',
+              marginTop: '16px',
+              paddingTop: '12px',
             }}
             variants={fadeInUp}
             custom={0.5}

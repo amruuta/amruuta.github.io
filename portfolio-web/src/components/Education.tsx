@@ -16,7 +16,7 @@ export default function Education() {
   };
 
   return (
-    <section id="education" className="py-24 bg-white">
+    <section id="education" className="py-24">
       <Container>
         <SectionHeading label="Education" title="Academic Background" subtitle="BSE Computer Science Education" />
 

@@ -8,7 +8,7 @@ export const portfolioData = {
     phone: "+91-8237513503",
     location: "Pune, India",
     summary:
-      "Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Actively exploring and building Agentic AI using diverse Python frameworks.",
+      "Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.",
   },
 
   skills: {
@@ -115,4 +115,34 @@ export const portfolioData = {
     "All-Star Award — Led the JBoss to Spring Boot modernization of the AML transaction monitoring platform.",
     "All-Star Award — Contributed to removing JBoss dependencies from batch and TIBCO consumer services, eliminating enterprise licensing costs.",
   ],
+
+  about: {
+    bio: "I'm a backend engineer with a proven track record of architecting and scaling high-throughput financial systems. I don't just write code—I design systems. Whether it's eliminating legacy infrastructure, modernizing monoliths, or building AI-powered workflows, I thrive on solving complex architectural challenges.",
+    stats: [
+      { value: "4+", label: "Years", desc: "Backend Engineering" },
+      { value: "2", label: "Companies", desc: "Production Systems" },
+      { value: "26", label: "Instances", desc: "Modernized & Deployed" },
+    ],
+    keyShipped: [
+      "Modernized AML transaction monitoring platform from JBoss EAP to Spring Boot (40-50% throughput improvement)",
+      "Eliminated proprietary JBoss licensing across 26 production instances, saving significant infrastructure costs",
+      "Architected Kafka-based event streaming layer for trading platforms processing millions of financial transactions",
+      "Built Python ETL utility reducing daily report generation time from 8-10 hours to ~1 hour",
+      "Designed multi-module Maven architecture enabling independent builds and full local execution",
+    ],
+    capabilities: [
+      { title: "Distributed Systems", tag: "Backend" },
+      { title: "Event-Driven Arch", tag: "Kafka/JMS" },
+      { title: "Microservices", tag: "Spring Boot" },
+      { title: "Cloud Infrastructure", tag: "AWS/Docker" },
+      { title: "Agentic AI", tag: "LLM Systems" },
+    ],
+    mindset: [
+      "Systems-first thinking",
+      "Write code for humans, not machines",
+      "Optimize for scale AND clarity",
+      "Measure impact, not just lines of code",
+      "Embrace modern tooling (AI-assisted dev)",
+    ],
+  },
 };

@@ -16,7 +16,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-24 bg-white">
+    <section id="experience" className="py-24">
       <Container>
         <SectionHeading
           label="Experience"

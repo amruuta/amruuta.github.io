@@ -14,7 +14,7 @@ export default function Footer() {
   const { personal } = portfolioData;
 
   return (
-    <footer className="relative border-t-4 border-black bg-white">
+    <footer className="relative border-t-4 border-black bg-transparent">
       <Container>
         {/* Main footer section */}
         <motion.div 
@@ -31,18 +31,9 @@ export default function Footer() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div 
-              className="flex items-baseline gap-2"
-              variants={fadeInUp}
-              custom={0.1}
-            >
-              <span className="text-5xl font-bold text-black">AB</span>
-              <span className="text-sm font-bold uppercase tracking-widest text-gray-600">Studio</span>
-            </motion.div>
-
             <motion.div
               variants={fadeInUp}
-              custom={0.2}
+              custom={0.1}
             >
               <p className="text-sm font-bold text-gray-700 mb-1">{personal.name}</p>
               <p className="text-xs text-gray-600 uppercase tracking-wide">{personal.title}</p>

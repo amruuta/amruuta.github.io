@@ -16,7 +16,7 @@ export default function Button({
   className = '',
 }: ButtonProps) {
   const base =
-    'inline-flex items-center gap-2 px-6 py-3 font-bold text-sm focus-ring transition-all duration-200 border-2 border-black uppercase tracking-wide rounded-none';
+    'inline-flex items-center gap-2 px-5 py-2 font-bold text-xs focus-ring transition-all duration-200 border-2 border-black uppercase tracking-wide rounded-none';
 
   const primaryClass =
     'bg-gradient-to-r from-red-500 to-red-600 text-white hover:shadow-[6px_6px_0px_#000000] active:shadow-[2px_2px_0px_#000000] active:scale-[0.98] hover:scale-[1.04]';

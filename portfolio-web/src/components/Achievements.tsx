@@ -16,7 +16,7 @@ export default function Achievements() {
   };
 
   return (
-    <section id="achievements" className="py-24 bg-white">
+    <section id="achievements" className="py-24">
       <Container>
         <SectionHeading
           label="Achievements"

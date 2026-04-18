@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
+import { portfolioData } from '../data/portfolioData';
 import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
 import { fadeInUp, viewport } from '../lib/animations';
 
 export default function Publications() {
+  const { personal } = portfolioData;
   // Orange + Rose creative content color scheme
   const colors = {
     orange: '#F97316',
@@ -13,7 +15,7 @@ export default function Publications() {
   };
 
   return (
-    <section id="publications" className="py-24 bg-white">
+    <section id="publications" className="py-24">
       <Container>
         <SectionHeading
           label="Publications"
@@ -57,7 +59,7 @@ export default function Publications() {
 
           {/* CTA Link */}
           <motion.a
-            href="https://www.linkedin.com/in/amruta-bendale"
+            href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-sm font-bold px-5 py-2.5 border-3 border-black bg-black text-white transition-all"

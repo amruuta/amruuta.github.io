@@ -31,7 +31,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-32 bg-white">
+    <section id="contact" className="py-32">
       <Container>
         <SectionHeading
           label="Get In Touch"

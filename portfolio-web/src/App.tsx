@@ -1,4 +1,5 @@
 import { useLenis } from './lib/useLenis';
+import AnimatedGradientBg from './components/AnimatedGradientBg';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -17,21 +18,24 @@ export default function App() {
   useLenis();
 
   return (
-    <div className="min-h-screen bg-bg text-text-primary font-body">
-      <ScrollProgress />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Education />
-        <Achievements />
-        <Projects />
-        <Publications />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="relative min-h-screen overflow-x-hidden text-text-primary font-body">
+      <AnimatedGradientBg />
+      <div className="relative z-10">
+        <ScrollProgress />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Education />
+          <Achievements />
+          <Projects />
+          <Publications />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -22,21 +22,43 @@
   }
 }
 
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @layer base {
   html {
+    min-height: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: 4rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #e6bfd1;
   }
 
   body {
-    background-color: #FFFFFF;
+    min-height: 100%;
+    margin: 0;
+    background-color: transparent;
     color: #000000;
     font-family: 'Inter', sans-serif;
     line-height: 1.75;
     position: relative;
     letter-spacing: 0.3px;
+  }
+
+  #root {
+    min-height: 100%;
+    position: relative;
+    isolation: isolate;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -70,7 +92,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #FFFFFF;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {

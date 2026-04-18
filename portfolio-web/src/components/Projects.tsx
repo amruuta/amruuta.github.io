@@ -50,7 +50,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="py-32 bg-white">
+    <section id="projects" className="py-32">
       <Container>
         <SectionHeading
           label="Work"

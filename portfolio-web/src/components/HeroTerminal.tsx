@@ -46,8 +46,8 @@ export default function HeroTerminal() {
     const baseStyle: React.CSSProperties = {
       fontFamily: 'Fira Code, Courier New, monospace',
       color: getLineColor(color),
-      fontSize: '0.95rem',
-      lineHeight: '1.6',
+      fontSize: '0.8rem',
+      lineHeight: '1.5',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-word',
     };
@@ -55,7 +55,7 @@ export default function HeroTerminal() {
     if (color === 'highlight') {
       return {
         ...baseStyle,
-        fontSize: '1.75rem',
+        fontSize: '1.4rem',
         fontWeight: '700',
         letterSpacing: '0.12em',
         animation: 'glowPulseScale 2.5s ease-in-out',
@@ -164,7 +164,7 @@ export default function HeroTerminal() {
   }, [runAnimation, cancelAllTimers]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-8 mb-8">
+    <div className="w-full max-w-xl mx-auto mt-2 mb-2">
       <style>{`
         @keyframes glowPulseScale {
           0% {
@@ -267,9 +267,9 @@ export default function HeroTerminal() {
         <div
           className="overflow-hidden relative z-20"
           style={{
-            height: '180px',
+            height: '120px',
             backgroundColor: '#FAFAFA',
-            padding: '1rem',
+            padding: '0.8rem',
           }}
         >
           <div className="space-y-0">

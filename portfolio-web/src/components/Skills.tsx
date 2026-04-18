@@ -19,7 +19,7 @@ export default function Skills() {
   const allSkills = Object.values(skills).flat();
 
   return (
-    <section id="skills" className="py-32 bg-white">
+    <section id="skills" className="py-32">
       <Container>
         <SectionHeading
           label="Expertise"
