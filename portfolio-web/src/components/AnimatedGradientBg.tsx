@@ -49,13 +49,13 @@ export default function AnimatedGradientBg() {
         zIndex: 0,
         background: `linear-gradient(
           120deg,
-          #EE9578,
-          #F0D0A4,
-          #EEA982,
-          #D4A8E0,
-          #BFA4D4,
-          #9FB6F2,
-          #EE9578
+          #D4623E,
+          #D4A85C,
+          #D07A48,
+          #A96EC4,
+          #8A6AAF,
+          #5F7ED4,
+          #D4623E
         )`,
         backgroundSize: '300% 300%',
         backgroundPosition: 'var(--bg-pos-x, 50%) var(--bg-pos-y, 50%)',

@@ -34,6 +34,86 @@
   }
 }
 
+/* Portrait flip shine sweep — left to right */
+@keyframes portraitShine {
+  0% {
+    left: -80%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+.portrait-shine {
+  overflow: hidden;
+}
+
+.portrait-shine::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -80%;
+  width: 50%;
+  height: 180%;
+  background: linear-gradient(
+    105deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.1) 28%,
+    rgba(255, 255, 255, 0.3) 35%,
+    rgba(255, 255, 255, 0.6) 42%,
+    rgba(255, 255, 255, 0.95) 48%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.95) 52%,
+    rgba(255, 255, 255, 0.6) 58%,
+    rgba(255, 255, 255, 0.3) 65%,
+    rgba(255, 255, 255, 0.1) 72%,
+    transparent 85%
+  );
+  transform: skewX(-15deg);
+  animation: portraitShine 0.55s ease-in-out forwards;
+  pointer-events: none;
+}
+
+/* Portrait border pulse ring animation */
+@keyframes borderPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.portrait-border-anim {
+  border-color: #000000;
+  animation: borderPulse 2.2s ease-out infinite;
+}
+
+/* 4-pointed sparkle star animation */
+@keyframes sparkleAnim {
+  0%   { transform: scale(0) rotate(0deg);  opacity: 0;    }
+  18%  { transform: scale(1.15) rotate(25deg); opacity: 1;    }
+  50%  { transform: scale(1) rotate(45deg); opacity: 0.95; }
+  82%  { transform: scale(0.7) rotate(65deg); opacity: 0.5;  }
+  100% { transform: scale(0) rotate(90deg); opacity: 0;    }
+}
+
+.sparkle-star {
+  animation: sparkleAnim 2.5s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 3px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 18px rgba(255, 255, 255, 0.5));
+}
+
 @layer base {
   html {
     min-height: 100%;
@@ -183,3 +263,75 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   DARK MODE GLOBAL OVERRIDES
+   ============================================================ */
+
+html.dark {
+  background-color: #0F0F0F;
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0F0F0F;
+  color: #F3F4F6;
+}
+
+/* ── Text colors ── */
+html.dark .text-black          { color: #F3F4F6 !important; }
+html.dark .text-gray-700       { color: #9CA3AF !important; }
+html.dark .text-gray-600       { color: #9CA3AF !important; }
+html.dark .text-gray-500       { color: #6B7280 !important; }
+html.dark .text-text-primary   { color: #F3F4F6 !important; }
+html.dark .text-text-secondary { color: #FFFFFF !important; }
+
+/* ── Headings ── */
+html.dark h1, html.dark h2, html.dark h3, html.dark h4 { color: #F3F4F6; }
+
+/* ── Borders (neo-brutalist: black → white) ── */
+html.dark .border-black  { border-color: #ffffff !important; }
+html.dark .border-b-4    { border-color: #ffffff !important; }
+html.dark .border-t-4    { border-color: #ffffff !important; }
+
+/* ── Background flips ── */
+html.dark .bg-white      { background-color: #1A1A1A !important; }
+html.dark .bg-gray-100   { background-color: #222222 !important; }
+html.dark .hover\:bg-gray-100:hover { background-color: #2A2A2A !important; }
+html.dark .bg-blue-50    { background-color: rgba(37,99,235,0.15) !important; }
+
+/* ── Eyebrow label ── */
+html.dark .eyebrow { color: #60A5FA !important; }
+
+/* ── Card brutal utility ── */
+html.dark .card-brutal {
+  background-color: #1A1A1A;
+  border-color: #ffffff;
+  box-shadow: 4px 4px 0px #ffffff;
+}
+html.dark .card-brutal:hover {
+  box-shadow: 6px 6px 0px #ffffff;
+}
+
+/* ── Section divider utility ── */
+html.dark .section-divider { border-color: #ffffff; }
+
+/* ── Scrollbar ── */
+html.dark ::-webkit-scrollbar-thumb       { background: #444444; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #666666; }
+
+/* ── Footer border ── */
+html.dark footer.border-t-4 { border-color: #ffffff !important; }
+
+/* ── Timeline / experience vertical line ── */
+html.dark [style*="backgroundColor: '#000000'"] { /* handled at component level */ }
+
+/* ── Mobile nav menu ── */
+html.dark .border-t-4.border-black { border-color: #ffffff !important; }
+
+/* ── Hamburger lines ── */
+html.dark .bg-black { background-color: #F3F4F6 !important; }
+
+/* ── Portrait border animation ── */
+html.dark .portrait-border-anim { border-color: #ffffff !important; }
+

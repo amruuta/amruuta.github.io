@@ -6,6 +6,7 @@ import { portfolioData } from '../data/portfolioData';
 import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
 import { fadeInUp, fadeIn, staggerContainer, viewport } from '../lib/animations';
+import { useTheme } from '../lib/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,7 @@ const projectColors = [
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { projects } = portfolioData;
+  const { isDark } = useTheme();
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -53,9 +55,8 @@ export default function Projects() {
     <section id="projects" className="py-32">
       <Container>
         <SectionHeading
-          label="Work"
-          title="Creative Studio Showcase"
-          subtitle="Engineered solutions that solve real problems — from data analysis to distributed systems."
+          label="What I've Built"
+          title="Projects"
         />
 
         {/* Masonry-style grid with varied column spans */}
@@ -98,10 +99,16 @@ export default function Projects() {
 
                 {/* Header */}
                 <div className="mb-4">
-                  <h3 className="text-xl font-bold text-black mb-2">
+                  <h3
+                    className="text-xl font-bold mb-2"
+                    style={{ color: isDark ? '#F9FAFB' : '#111827' }}
+                  >
                     {project.name}
                   </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: isDark ? '#FFFFFF' : '#374151' }}
+                  >
                     {project.description}
                   </p>
                 </div>
