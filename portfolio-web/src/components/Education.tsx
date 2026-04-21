@@ -3,9 +3,11 @@ import { portfolioData } from '../data/portfolioData';
 import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
 import { fadeInUp, staggerContainer, viewport } from '../lib/animations';
+import { useTheme } from '../lib/ThemeContext';
 
 export default function Education() {
   const { education } = portfolioData;
+  const { isDark } = useTheme();
 
   // Blue + Cyan academic color scheme
   const colors = {
@@ -30,56 +32,68 @@ export default function Education() {
           {education.map((edu, idx) => (
             <motion.div
               key={edu.institution}
-              className="border-4 border-black overflow-hidden bg-white"
+              className="border-4 overflow-hidden"
               style={{
-                backgroundColor: idx % 2 === 0 ? colors.blueLight : colors.cyanLight,
-                boxShadow: '4px 4px 0px #000000',
+                borderColor: isDark ? '#e5e7eb' : '#000000',
+                backgroundColor: isDark 
+                  ? (idx % 2 === 0 ? '#2563eb' : '#0891b2')
+                  : (idx % 2 === 0 ? colors.blueLight : colors.cyanLight),
+                boxShadow: isDark ? '4px 4px 0px rgba(148,163,184,0.5)' : '4px 4px 0px #000000',
               }}
               variants={fadeInUp}
               custom={0.1 + idx * 0.08}
               whileHover={{ 
                 y: -3,
-                boxShadow: '4px 4px 0px #000000',
+                boxShadow: isDark ? '6px 6px 0px rgba(148,163,184,0.6)' : '4px 4px 0px #000000',
                 transition: { duration: 0.2 }
               }}
             >
               {/* Top accent bar */}
               <div
                 className="h-1 w-full"
-                style={{ backgroundColor: idx % 2 === 0 ? colors.blue : colors.cyan }}
+                style={{ backgroundColor: isDark ? (idx % 2 === 0 ? '#60A5FA' : '#67E8F9') : (idx % 2 === 0 ? colors.blue : colors.cyan) }}
               />
               
               <div className="p-6">
                 <div className="flex items-start gap-4">
                   <div
-                    className="w-10 h-10 rounded border-2 border-black flex items-center justify-center flex-shrink-0 font-bold text-sm"
+                    className="w-10 h-10 rounded border-2 flex items-center justify-center flex-shrink-0 font-bold text-sm"
                     style={{
-                      backgroundColor: idx % 2 === 0 ? colors.blue : colors.cyan,
-                      color: '#fff',
+                      backgroundColor: isDark ? (idx % 2 === 0 ? '#60A5FA' : '#67E8F9') : (idx % 2 === 0 ? colors.blue : colors.cyan),
+                      borderColor: isDark ? '#e5e7eb' : '#000000',
+                      color: isDark ? '#000' : '#fff',
                     }}
                   >
                     🎓
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-base text-black leading-snug">
+                    <h3 className="font-bold text-base leading-snug" style={{ color: isDark ? '#fff' : '#000' }}>
                       {edu.degree}
                     </h3>
                     <p
                       className="font-semibold text-sm mt-1"
-                      style={{ color: idx % 2 === 0 ? colors.blue : colors.cyan }}
+                      style={{ color: isDark ? '#fff' : (idx % 2 === 0 ? colors.blue : colors.cyan) }}
                     >
                       {edu.institution}
                     </p>
                     <div className="flex flex-wrap items-center gap-2 mt-3">
                       <span
-                        className="text-xs font-bold px-2.5 py-1 border-2 border-black bg-white"
-                        style={{ color: idx % 2 === 0 ? colors.blue : colors.cyan }}
+                        className="text-xs font-bold px-2.5 py-1 border-2"
+                        style={{ 
+                          backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                          borderColor: isDark ? '#e5e7eb' : '#000000',
+                          color: isDark ? '#fff' : (idx % 2 === 0 ? colors.blue : colors.cyan)
+                        }}
                       >
                         {edu.year}
                       </span>
                       <span
-                        className="text-xs font-bold px-2.5 py-1 border-2 border-black text-white"
-                        style={{ backgroundColor: idx % 2 === 0 ? colors.blue : colors.cyan }}
+                        className="text-xs font-bold px-2.5 py-1 border-2"
+                        style={{ 
+                          backgroundColor: isDark ? (idx % 2 === 0 ? '#60A5FA' : '#67E8F9') : (idx % 2 === 0 ? colors.blue : colors.cyan),
+                          borderColor: isDark ? '#e5e7eb' : '#000000',
+                          color: isDark ? '#000' : '#fff'
+                        }}
                       >
                         {edu.achievement}
                       </span>

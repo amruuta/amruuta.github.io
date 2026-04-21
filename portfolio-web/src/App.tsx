@@ -9,7 +9,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Achievements from './components/Achievements';
 import Projects from './components/Projects';
-import Publications from './components/Publications';
+// import Publications from './components/Publications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
@@ -33,7 +33,7 @@ export default function App() {
             <Education />
             <Achievements />
             <Projects />
-            <Publications />
+            {/* <Publications /> */}
             <Contact />
           </main>
           <Footer />

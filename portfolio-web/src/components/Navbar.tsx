@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'Education', href: '#education', id: 'education' },
   { label: 'Achievements', href: '#achievements', id: 'achievements' },
   { label: 'Projects', href: '#projects', id: 'projects' },
-  { label: 'Publications', href: '#publications', id: 'publications' },
+  // { label: 'Publications', href: '#publications', id: 'publications' },
   { label: 'Contact', href: '#contact', id: 'contact' },
 ];
 
@@ -71,7 +71,9 @@ export default function Navbar() {
                   className={`px-2 py-2 text-xs font-semibold uppercase transition-all duration-200 ${
                     activeSection === link.id
                       ? 'text-brand border-b-2 border-brand'
-                      : 'text-gray-700 hover:text-black hover:border-b-2 hover:border-black'
+                      : isDark
+                        ? 'text-gray-300 border-b-2 border-transparent hover:border-white'
+                        : 'text-gray-700 border-b-2 border-transparent hover:text-black hover:border-black'
                   }`}
                 >
                   {link.label}
@@ -188,7 +190,9 @@ export default function Navbar() {
                     className={`block px-3 py-2.5 text-xs font-bold tracking-wide uppercase transition-all ${
                       activeSection === link.id
                         ? 'text-brand border-l-4 border-brand bg-blue-50'
-                        : 'text-gray-700 hover:text-black hover:border-l-4 hover:border-black'
+                        : isDark
+                          ? 'text-gray-300 hover:border-l-4 hover:border-white'
+                          : 'text-gray-700 hover:text-black hover:border-l-4 hover:border-black'
                     }`}
                     onClick={() => setMenuOpen(false)}
                   >

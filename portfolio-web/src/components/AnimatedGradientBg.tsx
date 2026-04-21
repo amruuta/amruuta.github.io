@@ -49,17 +49,17 @@ export default function AnimatedGradientBg() {
         zIndex: 0,
         background: `linear-gradient(
           120deg,
-          #D4623E,
-          #D4A85C,
-          #D07A48,
-          #A96EC4,
-          #8A6AAF,
-          #5F7ED4,
-          #D4623E
+          var(--animated-gradient-stop-1, #D4623E),
+          var(--animated-gradient-stop-2, #D4A85C),
+          var(--animated-gradient-stop-3, #D07A48),
+          var(--animated-gradient-stop-4, #A96EC4),
+          var(--animated-gradient-stop-5, #8A6AAF),
+          var(--animated-gradient-stop-6, #5F7ED4),
+          var(--animated-gradient-stop-1, #D4623E)
         )`,
-        backgroundSize: '300% 300%',
+        backgroundSize: 'var(--animated-gradient-size, 300%) var(--animated-gradient-size, 300%)',
         backgroundPosition: 'var(--bg-pos-x, 50%) var(--bg-pos-y, 50%)',
-        animation: 'gradientFlow 12s ease-in-out infinite',
+        animation: 'gradientFlow var(--animated-gradient-duration, 12s) ease-in-out infinite',
         willChange: 'background-position',
         pointerEvents: 'none',
       }}

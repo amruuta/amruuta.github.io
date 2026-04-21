@@ -3,9 +3,11 @@ import { portfolioData } from '../data/portfolioData';
 import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
 import { fadeInUp, staggerContainer, viewport } from '../lib/animations';
+import { useTheme } from '../lib/ThemeContext';
 
 export default function Contact() {
   const { personal } = portfolioData;
+  const { isDark } = useTheme();
 
   const whatsappHref = personal.phone
     ? `https://wa.me/${personal.phone.replace(/\D/g, '')}`
@@ -26,8 +28,12 @@ export default function Contact() {
         <SectionHeading label="Let's Connect" title="Get in Touch" />
 
         <motion.div
-          className="border-4 border-black overflow-hidden"
-          style={{ boxShadow: '6px 6px 0px #000000', backgroundColor: '#EDE9FE' }}
+          className="border-4 overflow-hidden"
+          style={{ 
+            backgroundColor: isDark ? '#5b21b6' : '#EDE9FE',
+            borderColor: isDark ? '#e5e7eb' : '#000000',
+            boxShadow: isDark ? '6px 6px 0px rgba(148,163,184,0.5)' : '6px 6px 0px #000000'
+          }}
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
@@ -35,7 +41,7 @@ export default function Contact() {
           custom={0.1}
         >
           {/* Cyan accent top bar */}
-          <div className="h-1.5 w-full" style={{ backgroundColor: '#22d3ee' }} />
+          <div className="h-1.5 w-full" style={{ backgroundColor: isDark ? '#06b6d4' : '#22d3ee' }} />
 
           <motion.div
             className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 p-8 lg:p-12"
@@ -49,7 +55,7 @@ export default function Contact() {
               {/* Blurb */}
               <motion.p
                 className="text-base leading-relaxed font-medium max-w-lg"
-                style={{ color: '#4B5563' }}
+                style={{ color: isDark ? '#d1d5db' : '#4B5563' }}
                 variants={fadeInUp}
                 custom={0.1}
               >
@@ -60,22 +66,26 @@ export default function Contact() {
               {/* Email block */}
               <motion.a
                 href={`mailto:${personal.email}`}
-                className="group flex flex-col gap-1.5 border-4 border-black p-5 transition-all duration-200"
-                style={{ backgroundColor: '#A5F3FC', boxShadow: '4px 4px 0px #000000' }}
-                whileHover={{ y: -3, boxShadow: '6px 6px 0px #000000' }}
+                className="group flex flex-col gap-1.5 border-4 p-5 transition-all duration-200"
+                style={{ 
+                  backgroundColor: isDark ? '#155e75' : '#A5F3FC',
+                  borderColor: isDark ? '#e5e7eb' : '#000000',
+                  boxShadow: isDark ? '4px 4px 0px rgba(148,163,184,0.5)' : '4px 4px 0px #000000'
+                }}
+                whileHover={{ y: -3, boxShadow: isDark ? '6px 6px 0px rgba(148,163,184,0.6)' : '6px 6px 0px #000000' }}
                 variants={fadeInUp}
                 custom={0.2}
               >
-                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: '#0891B2' }}>
+                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isDark ? '#67e8f9' : '#0891B2' }}>
                   ✉ Reach me at
                 </span>
                 <span
                   className="text-xl md:text-2xl font-black break-all transition-colors duration-200"
-                  style={{ color: '#0e7490' }}
+                  style={{ color: isDark ? '#a5f3fc' : '#0e7490' }}
                 >
                   {personal.email}
                 </span>
-                <span className="text-xs font-semibold text-gray-500 group-hover:text-gray-700 transition-colors">
+                <span className="text-xs font-semibold" style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
                   Click to open email client →
                 </span>
               </motion.a>
@@ -83,23 +93,38 @@ export default function Contact() {
               {/* Info chips row */}
               <motion.div className="flex flex-wrap gap-3" variants={fadeInUp} custom={0.3}>
                 <div
-                  className="flex items-center gap-2 px-3 py-1.5 border-2 border-black text-xs font-bold"
-                  style={{ backgroundColor: '#FDE68A', boxShadow: '2px 2px 0px #000000' }}
+                  className="flex items-center gap-2 px-3 py-1.5 border-2 text-xs font-bold"
+                  style={{ 
+                    backgroundColor: isDark ? '#92400e' : '#FDE68A',
+                    borderColor: isDark ? '#e5e7eb' : '#000000',
+                    boxShadow: isDark ? '2px 2px 0px rgba(148,163,184,0.5)' : '2px 2px 0px #000000',
+                    color: isDark ? '#fef3c7' : '#000000'
+                  }}
                 >
                   <span>📍</span>
                   <span>{personal.location}</span>
                 </div>
                 <div
-                  className="flex items-center gap-2 px-3 py-1.5 border-2 border-black text-xs font-bold"
-                  style={{ backgroundColor: '#BBF7D0', boxShadow: '2px 2px 0px #000000' }}
+                  className="flex items-center gap-2 px-3 py-1.5 border-2 text-xs font-bold"
+                  style={{ 
+                    backgroundColor: isDark ? '#166534' : '#BBF7D0',
+                    borderColor: isDark ? '#e5e7eb' : '#000000',
+                    boxShadow: isDark ? '2px 2px 0px rgba(148,163,184,0.5)' : '2px 2px 0px #000000',
+                    color: isDark ? '#dcfce7' : '#000000'
+                  }}
                 >
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block" />
                   <span>Open to Opportunities</span>
                 </div>
                 {personal.phone && (
                   <div
-                    className="flex items-center gap-2 px-3 py-1.5 border-2 border-black text-xs font-bold"
-                    style={{ backgroundColor: '#C4B5FD', boxShadow: '2px 2px 0px #000000' }}
+                    className="flex items-center gap-2 px-3 py-1.5 border-2 text-xs font-bold"
+                    style={{ 
+                      backgroundColor: isDark ? '#6d28d9' : '#C4B5FD',
+                      borderColor: isDark ? '#e5e7eb' : '#000000',
+                      boxShadow: isDark ? '2px 2px 0px rgba(148,163,184,0.5)' : '2px 2px 0px #000000',
+                      color: isDark ? '#e9d5ff' : '#000000'
+                    }}
                   >
                     <span>📞</span>
                     <span>{personal.phone}</span>
@@ -115,8 +140,12 @@ export default function Contact() {
               custom={0.3}
             >
               <div
-                className="px-3 py-1.5 border-2 border-black self-start"
-                style={{ backgroundColor: '#7C3AED', boxShadow: '2px 2px 0px #000000' }}
+                className="px-3 py-1.5 border-2 self-start"
+                style={{ 
+                  backgroundColor: isDark ? '#6d28d9' : '#7C3AED',
+                  borderColor: isDark ? '#e5e7eb' : '#000000',
+                  boxShadow: isDark ? '2px 2px 0px rgba(148,163,184,0.5)' : '2px 2px 0px #000000'
+                }}
               >
                 <span className="text-[10px] font-black uppercase tracking-widest text-white">
                   Find me on
@@ -130,16 +159,24 @@ export default function Contact() {
                     href={link.href}
                     target={link.href.startsWith('mailto') ? undefined : '_blank'}
                     rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                    className="flex flex-col items-center gap-1.5 border-2 border-black p-3 transition-all duration-200"
-                    style={{ backgroundColor: '#1e1b4b', boxShadow: '3px 3px 0px #000000' }}
-                    whileHover={{ y: -3, boxShadow: '4px 4px 0px #000000', scale: 1.04 }}
+                    className="flex flex-col items-center gap-1.5 border-2 p-3 transition-all duration-200"
+                    style={{ 
+                      backgroundColor: isDark ? '#374151' : '#1e1b4b',
+                      borderColor: isDark ? '#e5e7eb' : '#000000',
+                      boxShadow: isDark ? '3px 3px 0px rgba(148,163,184,0.5)' : '3px 3px 0px #000000'
+                    }}
+                    whileHover={{ 
+                      y: -3, 
+                      boxShadow: isDark ? '4px 4px 0px rgba(148,163,184,0.6)' : '4px 4px 0px #000000',
+                      scale: 1.04 
+                    }}
                     whileTap={{ scale: 0.96 }}
                     variants={fadeInUp}
                     custom={0.1 * (i + 4)}
                     aria-label={link.label}
                   >
                     {link.icon}
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400">
+                    <span className="text-[9px] font-bold uppercase tracking-widest" style={{ color: isDark ? '#d1d5db' : '#9ca3af' }}>
                       {link.label}
                     </span>
                   </motion.a>

@@ -6,6 +6,7 @@ import SectionHeading from './ui/SectionHeading';
 import portrait1 from '../assets/portrait1.jpeg';
 import { fadeInUp, staggerContainer, viewport } from '../lib/animations';
 import portrait2 from '../assets/portrait2.jpeg';
+import { useTheme } from '../lib/ThemeContext';
 
 // Vibrant accent colors - Violet + Cyan
 const colors = {
@@ -43,6 +44,7 @@ const Sparkle = ({ size, style }: { size: number; style: React.CSSProperties }) 
 
 export default function About() {
   const { personal, experience, about } = portfolioData;
+  const { isDark } = useTheme();
   const primaryStat = about.stats[0];
   const { bio } = about;
 
@@ -86,21 +88,22 @@ export default function About() {
           >
             {/* Who I am block */}
             <motion.div
-              className="flex-1 p-2.5 lg:p-3 border-4 border-black flex flex-col justify-center"
+              className="flex-1 p-2.5 lg:p-3 border-4 flex flex-col justify-center"
               style={{
-                backgroundColor: '#C4B5FD',
-                boxShadow: '4px 4px 0px #000000',
+                backgroundColor: isDark ? '#6d28d9' : '#C4B5FD',
+                borderColor: isDark ? '#e5e7eb' : '#000000',
+                boxShadow: isDark ? '4px 4px 0px rgba(148,163,184,0.5)' : '4px 4px 0px #000000',
               }}
               variants={fadeInUp}
               whileHover={{ 
                 y: -2,
-                boxShadow: '6px 6px 0px #000000',
+                boxShadow: isDark ? '6px 6px 0px rgba(148,163,184,0.6)' : '6px 6px 0px #000000',
               }}
             >
-              <h3 className="text-sm font-black uppercase tracking-widest mb-2" style={{ color: colors.violet }}>
+              <h3 className="text-sm font-black uppercase tracking-widest mb-2" style={{ color: isDark ? '#c084fc' : colors.violet }}>
                 WHO I AM
               </h3>
-              <p className="text-sm leading-relaxed text-gray-800 font-medium">
+              <p className="text-sm leading-relaxed font-medium" style={{ color: isDark ? '#f3f4f6' : '#1f2937' }}>
                 {bio}
               </p>
             </motion.div>
@@ -109,46 +112,48 @@ export default function About() {
             <div className="grid grid-cols-2 gap-3">
               {/* Experience stat */}
               <motion.div
-                className="p-3 border-4 border-black text-center"
+                className="p-3 border-4 text-center"
                 style={{
-                  backgroundColor: '#A5F3FC',
-                  boxShadow: '4px 4px 0px #000000',
+                  backgroundColor: isDark ? '#155e75' : '#A5F3FC',
+                  borderColor: isDark ? '#e5e7eb' : '#000000',
+                  boxShadow: isDark ? '4px 4px 0px rgba(148,163,184,0.5)' : '4px 4px 0px #000000',
                 }}
                 variants={fadeInUp}
                 whileHover={{ 
                   y: -3,
-                  boxShadow: '6px 6px 0px #000000',
+                  boxShadow: isDark ? '6px 6px 0px rgba(148,163,184,0.6)' : '6px 6px 0px #000000',
                 }}
               >
-                <div className="text-3xl font-black mb-1" style={{ color: colors.violet }}>
+                <div className="text-3xl font-black mb-1" style={{ color: isDark ? '#67e8f9' : colors.violet }}>
                   {primaryStat.value}
                 </div>
-                <div className="text-xs font-black uppercase tracking-widest text-gray-700 mb-0.5">
+                <div className="text-xs font-black uppercase tracking-widest mb-0.5" style={{ color: isDark ? '#cffafe' : '#374151' }}>
                   {primaryStat.label}
                 </div>
-                <div className="text-xs text-gray-600 font-semibold">
+                <div className="text-xs font-semibold" style={{ color: isDark ? '#a5f3fc' : '#4b5563' }}>
                   {primaryStat.desc}
                 </div>
               </motion.div>
 
               {/* Current role info */}
               <motion.div
-                className="p-3 border-4 border-black"
+                className="p-3 border-4"
                 style={{
-                  backgroundColor: '#FDE68A',
-                  boxShadow: '4px 4px 0px #000000',
+                  backgroundColor: isDark ? '#92400e' : '#FDE68A',
+                  borderColor: isDark ? '#e5e7eb' : '#000000',
+                  boxShadow: isDark ? '4px 4px 0px rgba(148,163,184,0.5)' : '4px 4px 0px #000000',
                 }}
                 variants={fadeInUp}
                 whileHover={{ 
                   y: -3,
-                  boxShadow: '6px 6px 0px #000000',
+                  boxShadow: isDark ? '6px 6px 0px rgba(148,163,184,0.6)' : '6px 6px 0px #000000',
                 }}
               >
-                <p className="text-xs font-black uppercase tracking-widest text-amber-700 mb-1">Active</p>
-                <p className="text-sm font-bold text-gray-900 mb-1 leading-tight">
+                <p className="text-xs font-black uppercase tracking-widest mb-1" style={{ color: isDark ? '#fbbf24' : '#b45309' }}>Active</p>
+                <p className="text-sm font-bold mb-1 leading-tight" style={{ color: isDark ? '#fef3c7' : '#111827' }}>
                   {experience[0].position}
                 </p>
-                <p className="text-xs text-gray-700">{experience[0].company} · {experience[0].location}</p>
+                <p className="text-xs" style={{ color: isDark ? '#ddd6fe' : '#374151' }}>{experience[0].company} · {experience[0].location}</p>
               </motion.div>
             </div>
           </motion.div>
@@ -169,9 +174,10 @@ export default function About() {
             >
               {/* Neubrutalism shadow — with black border */}
               <div
-                className="absolute border-4 border-black transition-all duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 portrait-border-anim"
+                className="absolute border-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 portrait-border-anim"
                 style={{
-                  backgroundColor: colors.violet,
+                  backgroundColor: isDark ? '#9333ea' : colors.violet,
+                  borderColor: isDark ? '#e5e7eb' : '#000000',
                   top: '10px',
                   left: '10px',
                   right: 0,
@@ -184,15 +190,19 @@ export default function About() {
                 style={{ perspective: '2500px', transform: 'rotate(-1.5deg)' }}
               >
                 {/* Decorative corner accents */}
-                <div className="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-[3px] border-l-[3px] border-black z-20 pointer-events-none" />
-                <div className="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-[3px] border-r-[3px] border-black z-20 pointer-events-none" />
-                <div className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-[3px] border-l-[3px] border-black z-20 pointer-events-none" />
-                <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-[3px] border-r-[3px] border-black z-20 pointer-events-none" />
+                <div className="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-[3px] border-l-[3px] z-20 pointer-events-none" style={{ borderColor: isDark ? '#e5e7eb' : '#000000' }} />
+                <div className="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-[3px] border-r-[3px] z-20 pointer-events-none" style={{ borderColor: isDark ? '#e5e7eb' : '#000000' }} />
+                <div className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-[3px] border-l-[3px] z-20 pointer-events-none" style={{ borderColor: isDark ? '#e5e7eb' : '#000000' }} />
+                <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-[3px] border-r-[3px] z-20 pointer-events-none" style={{ borderColor: isDark ? '#e5e7eb' : '#000000' }} />
 
                 {/* Badge */}
                 <div
-                  className="absolute -top-3 -right-3 z-20 w-7 h-7 flex items-center justify-center border-2 border-black rounded-full text-sm font-black pointer-events-none transition-transform duration-300 group-hover:rotate-180 group-hover:scale-110"
-                  style={{ backgroundColor: colors.cyan, color: '#000' }}
+                  className="absolute -top-3 -right-3 z-20 w-7 h-7 flex items-center justify-center border-2 rounded-full text-sm font-black pointer-events-none transition-transform duration-300 group-hover:rotate-180 group-hover:scale-110"
+                  style={{ 
+                    backgroundColor: isDark ? '#22d3ee' : colors.cyan,
+                    borderColor: isDark ? '#e5e7eb' : '#000000',
+                    color: isDark ? '#000' : '#000'
+                  }}
                 >
                   ↻
                 </div>
@@ -211,7 +221,11 @@ export default function About() {
                     {/* Front face — portrait1 (IMG_3816) */}
                     <div
                       className="absolute inset-0 border-4 overflow-hidden bg-black portrait-border-anim"
-                      style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+                      style={{ 
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        borderColor: isDark ? '#e5e7eb' : '#000000'
+                      }}
                     >
                       <img
                         src={portrait1}
@@ -230,6 +244,7 @@ export default function About() {
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)',
+                        borderColor: isDark ? '#e5e7eb' : '#000000'
                       }}
                     >
                       <img

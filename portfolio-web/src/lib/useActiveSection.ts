@@ -1,5 +1,17 @@
 import { useEffect, useState } from 'react';
 
+const SECTION_IDS = [
+  'hero',
+  'about',
+  'skills',
+  'experience',
+  'education',
+  'achievements',
+  'projects',
+  // 'publications',
+  'contact',
+];
+
 export function useActiveSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState<string>('');
@@ -11,31 +23,43 @@ export function useActiveSection() {
       const progress = windowHeight > 0 ? (scrollTop / windowHeight) * 100 : 0;
       setScrollProgress(progress);
 
-      // Find active section based on scroll position
-      const sections = [
-        { id: 'hero', offset: 0 },
-        { id: 'about', offset: 800 },
-        { id: 'skills', offset: 1600 },
-        { id: 'experience', offset: 2400 },
-        { id: 'education', offset: 3200 },
-        { id: 'achievements', offset: 4000 },
-        { id: 'projects', offset: 4800 },
-        { id: 'publications', offset: 5600 },
-        { id: 'contact', offset: 6400 },
-      ];
+      // Find active section based on actual DOM positions so URL + nav stay in sync.
+      const activationPoint = scrollTop + 180;
+      let nextActive = SECTION_IDS[0];
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (scrollTop >= sections[i].offset - 200) {
-          setActiveSection(sections[i].id);
-          break;
+      for (const id of SECTION_IDS) {
+        const section = document.getElementById(id);
+        if (!section) {
+          continue;
+        }
+
+        if (activationPoint >= section.offsetTop) {
+          nextActive = id;
         }
       }
+
+      setActiveSection((prev) => {
+        if (prev === nextActive) {
+          return prev;
+        }
+
+        const nextHash = `#${nextActive}`;
+        if (window.location.hash !== nextHash) {
+          window.history.replaceState(null, '', nextHash);
+        }
+
+        return nextActive;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
     handleScroll(); // Call once on mount
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   return { scrollProgress, activeSection };
