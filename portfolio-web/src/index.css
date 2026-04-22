@@ -273,6 +273,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  html,
+  html.dark {
+    --animated-gradient-duration: 14s;
+  }
+}
+
 /* ============================================================
    DARK MODE GLOBAL OVERRIDES
    ============================================================ */

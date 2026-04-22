@@ -11,13 +11,7 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState(() => {
-    try {
-      return localStorage.getItem('portfolio-theme') === 'dark';
-    } catch {
-      return false;
-    }
-  });
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
