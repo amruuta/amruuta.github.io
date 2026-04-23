@@ -88,12 +88,16 @@ export default function Achievements() {
             </div>
 
             {certifications.map((cert, idx) => (
-              <motion.div
+              <motion.a
                 key={cert.name}
-                className="border-4 border-black p-5"
+                href={(cert as any).verificationUrl || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block border-4 border-black p-5 transition-all cursor-pointer"
                 style={{ 
                   backgroundColor: isDark ? colors.roseDark : colors.roseLip,
-                  borderColor: isDark ? '#e5e7eb' : '#000000'
+                  borderColor: isDark ? '#e5e7eb' : '#000000',
+                  textDecoration: 'none'
                 }}
                 variants={fadeInUp}
                 custom={0.1 + idx * 0.08}
@@ -118,7 +122,7 @@ export default function Achievements() {
                     <p className="text-xs mt-1" style={{ color: isDark ? '#d1d5db' : '#374151' }}>Issued by {cert.issuer}</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </motion.div>
         </motion.div>

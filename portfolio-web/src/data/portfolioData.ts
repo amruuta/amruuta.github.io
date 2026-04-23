@@ -4,10 +4,11 @@ export const portfolioData = {
     title: "Backend Engineer",
     email: "bendaleamruta2000@gmail.com",
     linkedin: "https://www.linkedin.com/in/amruta-bendale",
+    portfolio: "https://amruuta.github.io",
     github: "",
     phone: "+91-8237513503",
     medium: "",
-    resume: "/AmrutaBendale_SoftwareDeveloper.pdf",
+    resume: "/Amruta_Bendale-Software_Engineer.pdf",
     location: "Pune, India",
     summary:
       "Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.",
@@ -30,6 +31,7 @@ export const portfolioData = {
       "TIBCO EMS",
       "JBoss",
       "Tomcat",
+      "FastAPI",
       "React",
     ],
     agenticAI: [
@@ -54,14 +56,14 @@ export const portfolioData = {
       "System Design",
       "Data Structures & Algorithms",
       "SDLC",
-      "AI-Assisted Development Tools",
+      "AI-Assisted Development (Gemini Antigravity, GitHub Copilot, ChatGPT)",
     ],
   },
 
   experience: [
     {
       company: "Western Union",
-      position: "Junior Associate — Java Developer",
+      position: "Junior Associate",
       duration: "Mar 2025 – Present",
       location: "Pune, India",
       responsibilities: [
@@ -69,15 +71,16 @@ export const portfolioData = {
         "Replaced JBoss-managed web components with Spring Boot REST APIs; migrated JNDI DataSources to HikariCP connection pools, removing application server dependencies.",
         "Designed messaging layer by migrating from ActiveMQ Artemis to embedded ActiveMQ Classic with Spring JMS, and integrated Kafka producers to stream transaction events to downstream fraud investigation systems.",
         "Migrated a TIBCO EMS MDB consumer to a Spring Boot JMS service, reducing memory usage by eliminating EJB container overhead.",
+        "Upgraded backend services from Java 8 to Java 17 to improve maintainability and runtime compatibility.",
         "Implemented multi-module Maven architecture (API, batch, messaging, shared lib) enabling independent builds and full local execution.",
         "Eliminated proprietary JBoss licensing across 26 production instances, delivering significant infrastructure cost savings.",
-        "Improved development productivity by ~50% using AI-assisted tools for debugging, code generation, and unit test scaffolding.",
+        "Improved development productivity by ~50% using AI-assisted tools (Gemini Antigravity, GitHub Copilot, ChatGPT) for debugging, code generation, and unit test scaffolding.",
       ],
     },
     {
       company: "CLSA",
-      position: "Software Engineer — Full Stack",
-      duration: "July 2022 – Feb 2025",
+      position: "Software Engineer",
+      duration: "Jul 2022 – Feb 2025",
       location: "Pune, India",
       responsibilities: [
         "Developed custom Java solutions and configurations for a trading and risk management platform, implementing business workflows, financial reporting features, and integrations for processing live trading data and supporting risk analysis.",
@@ -86,7 +89,7 @@ export const portfolioData = {
         "Developed a React-based UI for the Initial Margin application, enabling users to manage system configuration data and view aggregated processing summaries via Spring Boot REST APIs.", 
         "Designed and implemented a Python-based ETL utility to extract equity trading data from database, transform and merge it with trading reports, and automate report generation workflow, reducing DOI report generation time from 8–10 hours to ~1 hour.", 
         "Developed a Spring Boot–based integration utility JAR encapsulating trading platform APIs, enabling multiple applications to access platform data through a shared interface while eliminating the need for individual platform JAR dependencies in each project.", 
-        "Used AI-assisted tools to improve development productivity.",
+        "Used AI-assisted tools (Gemini Antigravity, GitHub Copilot, ChatGPT) to improve development productivity.",
       ],
     },
     {
@@ -111,7 +114,7 @@ export const portfolioData = {
 
   projects: [
     {
-      name: "Data Analysis Chatbot",
+      name: "Data Analytics Chatbot",
       description:
         "AI-powered data analysis assistant enabling natural language querying over datasets. Users can generate complex SQL queries, export data to CSV, and create charts automatically through a conversational interface.",
       technologies: [
@@ -128,16 +131,17 @@ export const portfolioData = {
   ],
 
   certifications: [
-    { name: "Anthropic Claude with Amazon Bedrock", issuer: "Anthropic" },
+    { name: "Anthropic Claude with Amazon Bedrock (Mar 2026)", issuer: "Anthropic", verificationUrl: "https://verify.skilljar.com/c/u7wdd8eyayit" },
   ],
 
   awards: [
-    "All-Star Award — Led the JBoss to Spring Boot modernization of the AML transaction monitoring platform.",
-    "All-Star Award — Contributed to removing JBoss dependencies from batch and TIBCO consumer services, eliminating enterprise licensing costs.",
+    "All-Star Award (Q4 2025) — Led the JBoss to Spring Boot modernization of the AML transaction monitoring platform.",
+    "All-Star Award (Q1 2026) — Contributed to removing JBoss dependencies from batch and TIBCO consumer services, eliminating enterprise licensing costs.",
+    "Playmaker Award (Q4 2025) — Recognized for strong delivery during migration and performance improvement initiatives.",
   ],
 
   about: {
-    bio: "Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse python frameworks.",
+    bio: "Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.",
     stats: [
       { value: "4+", label: "Years", desc: "Backend Engineering" },
       { value: "2", label: "Companies", desc: "Production Systems" },
