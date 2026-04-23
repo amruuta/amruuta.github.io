@@ -73,11 +73,11 @@ export default function About() {
           compact
           label="About" 
           title={`${personal.name} — ${personal.title}`}
-          subtitle="A backend engineer obsessed with scalable systems and clean architecture"
+          subtitle=""
         />
 
         {/* Main content grid: blocks left, portrait right */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-4 lg:gap-8 items-stretch max-w-4xl mx-auto" style={{ overflow: 'visible' }}>
+        <div className="relative mt-4 grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-4 lg:gap-8 items-stretch max-w-4xl mx-auto" style={{ overflow: 'visible' }}>
           {/* Left: Blocks stacked */}
           <motion.div
             className="min-w-0 flex flex-col gap-2"

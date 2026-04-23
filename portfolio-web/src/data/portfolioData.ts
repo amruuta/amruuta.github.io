@@ -137,7 +137,7 @@ export const portfolioData = {
   ],
 
   about: {
-    bio: "I'm a backend engineer with a proven track record of architecting and scaling high-throughput financial systems. I don't just write code—I design systems. Whether it's eliminating legacy infrastructure, modernizing monoliths, or building AI-powered workflows, I thrive on solving complex architectural challenges.",
+    bio: "Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse python frameworks.",
     stats: [
       { value: "4+", label: "Years", desc: "Backend Engineering" },
       { value: "2", label: "Companies", desc: "Production Systems" },

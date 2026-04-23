@@ -83,7 +83,7 @@ export default function Hero() {
           >
             Building high-throughput financial systems, distributed services, and 
             event-driven platforms. Exploring the frontier of{' '}
-            <span style={{ color: '#000000', fontWeight: '700' }}>Agentic AI</span>.
+            Agentic AI.
           </motion.p>
 
           {/* CTAs with micro-interactions */}
