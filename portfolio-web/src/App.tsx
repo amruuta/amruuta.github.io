@@ -13,6 +13,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
+import Chatbot from './components/Chatbot';
 
 export default function App() {
   // Initialize Lenis smooth scrolling with GSAP ScrollTrigger sync
@@ -38,6 +39,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <Chatbot />
       </div>
     </ThemeProvider>
   );
