@@ -73,7 +73,7 @@ export const portfolioData = {
         "Migrated a TIBCO EMS MDB consumer to a Spring Boot JMS service, reducing memory usage by eliminating EJB container overhead.",
         "Upgraded backend services from Java 8 to Java 17 to improve maintainability and runtime compatibility.",
         "Implemented multi-module Maven architecture (API, batch, messaging, shared lib) enabling independent builds and full local execution.",
-        "Eliminated proprietary JBoss licensing across 26 production instances, delivering significant infrastructure cost savings.",
+        "Eliminated proprietary JBoss licensing across 26 production instances, which saved $80,000 annually.",
         "Improved development productivity by ~50% using AI-assisted tools (Gemini Antigravity, GitHub Copilot, ChatGPT) for debugging, code generation, and unit test scaffolding.",
       ],
     },
@@ -149,7 +149,7 @@ export const portfolioData = {
     ],
     keyShipped: [
       "Modernized AML transaction monitoring platform from JBoss EAP to Spring Boot (40-50% throughput improvement)",
-      "Eliminated proprietary JBoss licensing across 26 production instances, saving significant infrastructure costs",
+      "Eliminated proprietary JBoss licensing across 26 production instances, which saved $80,000 annually.",
       "Architected Kafka-based event streaming layer for trading platforms processing millions of financial transactions",
       "Built Python ETL utility reducing daily report generation time from 8-10 hours to ~1 hour",
       "Designed multi-module Maven architecture enabling independent builds and full local execution",

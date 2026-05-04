@@ -38,7 +38,7 @@ const getFallbackResponse = (message: string) => {
   }
 
   if (lowerMessage.includes("experience") || lowerMessage.includes("work") || lowerMessage.includes("job")) {
-    return `💼 **Experience**\n\n**Western Union | Junior Associate**\nPune, India | Mar 2025 – Present\n- Led modernization of an AML transaction monitoring platform (improving batch throughput by 40-50%).\n- Designed messaging layer using Kafka and Spring JMS.\n- Eliminated proprietary JBoss licensing across 26 production instances.\n\n**CLSA | Software Engineer**\nPune, India | Jul 2022 – Feb 2025\n- Developed custom Java solutions for a trading platform.\n- Designed a Python-based ETL utility reducing report generation time from 8 hours to ~1 hour.\n\n**Persistent Systems | Intern**\nPune, India | Jan 2022 - June 2022`;
+    return `💼 **Experience**\n\n**Western Union | Junior Associate**\nPune, India | Mar 2025 – Present\n- Led modernization of an AML transaction monitoring platform (improving batch throughput by 40-50%).\n- Designed messaging layer using Kafka and Spring JMS.\n- Eliminated proprietary JBoss licensing across 26 production instances, which saved $80,000 annually.\n\n**CLSA | Software Engineer**\nPune, India | Jul 2022 – Feb 2025\n- Developed custom Java solutions for a trading platform.\n- Designed a Python-based ETL utility reducing report generation time from 8 hours to ~1 hour.\n\n**Persistent Systems | Intern**\nPune, India | Jan 2022 - June 2022`;
   }
 
   if (lowerMessage.includes("education") || lowerMessage.includes("degree") || lowerMessage.includes("university")) {
