@@ -173,11 +173,11 @@ export default function Hero() {
           >
             <span className="flex items-center gap-2">
               <span>📍</span>
-              Pune, India
+              India
             </span>
             <span className="flex items-center gap-2">
               <span>⚙️</span>
-              ~4 years experience
+              4 years experience
             </span>
             <motion.a
               href="https://www.linkedin.com/in/amruta-bendale"

@@ -20,7 +20,7 @@ export default function Education() {
   return (
     <section id="education" className="py-24">
       <Container>
-        <SectionHeading label="Education" title="Academic Background" subtitle="BSE Computer Science Education" />
+        <SectionHeading label="Education" title="Academic Background" subtitle="" />
 
         <motion.div 
           className="flex flex-col gap-5 max-w-2xl mx-auto"

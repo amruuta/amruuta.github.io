@@ -18,7 +18,7 @@ const getFallbackResponse = (message: string) => {
   }
 
   if (lowerMessage.includes("hi") || lowerMessage.includes("hello")) {
-    return `👋 Hi! I'm Amruta's AI assistant. Amruta is a Backend Engineer with ~4 years of experience building and modernizing financial systems using Java, Spring Boot, Python, and exploring Agentic AI. Feel free to ask about her experience, skills, projects, or anything else!`;
+    return `👋 Hi! I'm Amruta's AI assistant. Amruta is a Backend Engineer with 4 years of experience building and modernizing financial systems using Java, Spring Boot, Python, and exploring Agentic AI. Feel free to ask about her experience, skills, projects, or anything else!`;
   }
 
   if (lowerMessage.includes("contact") || lowerMessage.includes("email") || lowerMessage.includes("reach")) {
@@ -50,7 +50,7 @@ const getFallbackResponse = (message: string) => {
   }
 
   if (lowerMessage.includes("about")) {
-    return `👤 **About Amruta**\n\nAmruta is a Backend Engineer with ~4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.`;
+    return `👤 **About Amruta**\n\nAmruta is a Backend Engineer with 4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.`;
   }
 
   return `That's a great question! 😊\n\nExplore different sections of Amruta's portfolio:\n\n**📌 Quick Links**\n- 👤 **About** - Background\n- 💻 **Skills** - Technical expertise\n- 💼 **Experience** - Work history\n- 🚀 **Projects** - What Amruta has built\n- 📧 **Contact** - Get in touch\n\nOr ask me something specific about Amruta's Backend or AI experience!`;
