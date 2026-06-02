@@ -50,7 +50,7 @@ const getFallbackResponse = (message: string) => {
   }
 
   if (lowerMessage.includes("about")) {
-    return `👤 **About Amruta**\n\nAmruta is a Backend Engineer with 4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.`;
+    return `👤 **About Amruta**\n\nAmruta is a Backend Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.`;
   }
 
   return `That's a great question! 😊\n\nExplore different sections of Amruta's portfolio:\n\n**📌 Quick Links**\n- 👤 **About** - Background\n- 💻 **Skills** - Technical expertise\n- 💼 **Experience** - Work history\n- 🚀 **Projects** - What Amruta has built\n- 📧 **Contact** - Get in touch\n\nOr ask me something specific about Amruta's Backend or AI experience!`;

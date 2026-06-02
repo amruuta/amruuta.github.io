@@ -71,26 +71,10 @@ export default function Projects() {
           {projects.map((project, idx) => {
             const colorScheme = projectColors[idx % projectColors.length];
             const masonrySpan = idx === 0 ? 'md:col-span-2' : idx === 1 ? 'md:row-span-2' : '';
-            
-            return (
-              <motion.div
-                data-project-card
-                key={project.name}
-                className={`relative border-4 flex flex-col p-8 group cursor-pointer transition-all duration-300 ${masonrySpan}`}
-                style={{
-                  borderColor: colorScheme.border,
-                  backgroundColor: colorScheme.bg,
-                  boxShadow: `4px 4px 0px #000000`,
-                }}
-                variants={fadeInUp}
-                custom={0.1 + idx * 0.08}
-                whileHover={{ 
-                  y: -6, 
-                  boxShadow: `6px 6px 0px #000000, 0 0 20px ${colorScheme.glow}`,
-                  rotate: idx % 2 === 0 ? 1 : -1,
-                  transition: { duration: 0.2 }
-                }}
-              >
+            const baseClasses = `relative border-4 flex flex-col p-8 group transition-all duration-300 ${masonrySpan} ${project.github ? 'cursor-pointer' : ''}`;
+
+            const cardContent = (
+              <>
                 {/* Accent corner mark */}
                 <div
                   className="absolute top-0 right-0 w-8 h-8 border-l-4 border-b-4"
@@ -119,29 +103,83 @@ export default function Projects() {
                   style={{ backgroundColor: colorScheme.border, opacity: 0.3 }}
                 />
 
-                {/* Tech stack with color chips */}
-                <motion.div 
-                  className="flex flex-wrap gap-2 mt-auto"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  animate="visible"
+                <div className="mt-auto">
+                  {/* Tech stack with color chips */}
+                  <motion.div 
+                    className="flex flex-wrap gap-2"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {project.technologies.map((tech, techIdx) => (
+                      <motion.span
+                        key={tech}
+                        className="text-xs font-bold px-3 py-1.5 border-2 uppercase tracking-wide"
+                        style={{
+                          borderColor: colorScheme.border,
+                          color: colorScheme.border,
+                          backgroundColor: colorScheme.bg,
+                        }}
+                        variants={fadeIn}
+                        custom={0.02 + techIdx * 0.02}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+                </div>
+              </>
+            );
+            
+            if (project.github) {
+              return (
+                <motion.a
+                  data-project-card
+                  key={project.name}
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${baseClasses} no-underline`}
+                  style={{
+                    borderColor: colorScheme.border,
+                    backgroundColor: colorScheme.bg,
+                    boxShadow: `4px 4px 0px #000000`,
+                  }}
+                  variants={fadeInUp}
+                  custom={0.1 + idx * 0.08}
+                  whileHover={{ 
+                    y: -6, 
+                    boxShadow: `6px 6px 0px #000000, 0 0 20px ${colorScheme.glow}`,
+                    rotate: idx % 2 === 0 ? 1 : -1,
+                    transition: { duration: 0.2 }
+                  }}
+                  aria-label={`Open ${project.name} on GitHub`}
                 >
-                  {project.technologies.map((tech, techIdx) => (
-                    <motion.span
-                      key={tech}
-                      className="text-xs font-bold px-3 py-1.5 border-2 uppercase tracking-wide"
-                      style={{
-                        borderColor: colorScheme.border,
-                        color: colorScheme.border,
-                        backgroundColor: colorScheme.bg,
-                      }}
-                      variants={fadeIn}
-                      custom={0.02 + techIdx * 0.02}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </motion.div>
+                  {cardContent}
+                </motion.a>
+              );
+            }
+
+            return (
+              <motion.div
+                data-project-card
+                key={project.name}
+                className={baseClasses}
+                style={{
+                  borderColor: colorScheme.border,
+                  backgroundColor: colorScheme.bg,
+                  boxShadow: `4px 4px 0px #000000`,
+                }}
+                variants={fadeInUp}
+                custom={0.1 + idx * 0.08}
+                whileHover={{ 
+                  y: -6, 
+                  boxShadow: `6px 6px 0px #000000, 0 0 20px ${colorScheme.glow}`,
+                  rotate: idx % 2 === 0 ? 1 : -1,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                {cardContent}
               </motion.div>
             );
           })}

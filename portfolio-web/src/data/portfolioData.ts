@@ -11,7 +11,7 @@ export const portfolioData = {
     resume: import.meta.env.VITE_RESUME_URL,
     location: "India",
     summary:
-      "Backend Engineer with 4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.",
+      "Backend Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.",
   },
 
   skills: {
@@ -36,9 +36,15 @@ export const portfolioData = {
     ],
     agenticAI: [
       "LangChain",
+      "DeepAgent",
+      "SpringAI",
       "MCP",
       "Prompt Engineering",
+      "Context Engineering",
       "RAG",
+      "Vector Database",
+      "Claude",
+      "OpenAI"
     ],
     cloudDevOps: [
       "AWS",
@@ -67,14 +73,15 @@ export const portfolioData = {
       duration: "Mar 2025 – Present",
       location: "Pune, India",
       responsibilities: [
-        "Led modernization of an AML transaction monitoring platform processing millions of financial transactions — replaced legacy JBoss EAP with standalone Spring Boot + embedded Tomcat, improving batch throughput by 40-50%.",
-        "Replaced JBoss-managed web components with Spring Boot REST APIs; migrated JNDI DataSources to HikariCP connection pools, removing application server dependencies.",
-        "Designed messaging layer by migrating from ActiveMQ Artemis to embedded ActiveMQ Classic with Spring JMS, and integrated Kafka producers to stream transaction events to downstream fraud investigation systems.",
-        "Migrated a TIBCO EMS MDB consumer to a Spring Boot JMS service, reducing memory usage by eliminating EJB container overhead.",
-        "Upgraded backend services from Java 8 to Java 17 to improve maintainability and runtime compatibility.",
-        "Implemented multi-module Maven architecture (API, batch, messaging, shared lib) enabling independent builds and full local execution.",
-        "Eliminated proprietary JBoss licensing across 26 production instances, which saved $80,000 annually.",
-        "Improved development productivity by ~50% using AI-assisted tools (Gemini Antigravity, GitHub Copilot, ChatGPT) for debugging, code generation, and unit test scaffolding.",
+        "Modernized a high-volume Anti-Money Laundering (AML) platform processing millions of financial transactions by migrating a legacy JBoss EAP application to a standalone Spring Boot service with embedded Tomcat, REST APIs, and HikariCP, improving batch transaction throughput by 40–50%.",
+        "As a part of the AML platform modernization, upgraded the messaging layer by migrating from ActiveMQ Artemis to embedded ActiveMQ Classic using Spring JMS, and integrated Kafka producers to stream processed transaction events from internal JMS queues to downstream fraud investigation and case-management system.",
+        "Migrated a legacy TIBCO Enterprise Message Service queue consumer from JBoss to a standalone Spring Boot JMS service, improving processing performance.",
+        "Transitioned a financial transactions processing data pipeline from JBoss application to standalone Spring Batch execution.",
+        "Led a cross-platform modernization initiative across the AML platform, JBoss based TIBCO consumer, and Spring Batch ingestion pipeline by upgrading all components from Java 8 to Java 17, resolving cross-module dependency conflicts and modernizing the runtime stack.",
+        "Implemented a multi-module Maven architecture with a shared common library across three applications, enabling independent builds, modular code reuse, and full local execution that reduced average debugging time by ~2 hours per session.",
+        "Eliminated JBoss licensing across 30 application server instances, which saved $90,000 annually.",
+        "Improved development productivity by ~50% leveraging AI-assisted tools for debugging, code generation, and unit test scaffolding tools.",
+        "Supported production releases and post deployment stabilization across multiple applications and environments, leading root cause analysis, hotfixes and resolving code vulnerabilities to ensure system reliability and operational continuity."
       ],
     },
     {
@@ -116,7 +123,8 @@ export const portfolioData = {
     {
       name: "Data Analytics Chatbot",
       description:
-        "AI-powered data analysis assistant enabling natural language querying over datasets. Users can generate complex SQL queries, export data to CSV, and create charts automatically through a conversational interface.",
+        "Built a fully functional data analytics chatbot with a data pipeline that helps with data analysis generating complex SQL queries, converting data to csv, generating graphs and PowerPoint presentations while managing chat history and user authentication.",
+      github: "https://github.com/amruuta/DataAnalysisAgent",
       technologies: [
         "Python",
         "FastAPI",
@@ -141,7 +149,7 @@ export const portfolioData = {
   ],
 
   about: {
-    bio: "Backend Engineer with 4 years of experience building and modernizing financial systems across trading, risk management, and AML transaction monitoring platforms. Experienced in developing distributed backend services, event-driven systems, and ETL for high-throughput financial workflows. Proven track record of delivering end-to-end backend features from system design to production deployment while upgrading legacy enterprise platforms. Actively exploring and building Agentic AI using diverse Python frameworks.",
+    bio: "Backend Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.",
     stats: [
       { value: "4+", label: "Years", desc: "Backend Engineering" },
       { value: "2", label: "Companies", desc: "Production Systems" },
