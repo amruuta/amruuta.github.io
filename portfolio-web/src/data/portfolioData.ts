@@ -122,6 +122,10 @@ export const portfolioData = {
   projects: [
     {
       name: "Data Analytics Chatbot",
+      shortName: "Data Analytics",
+      // Which animated demo plays in this project's folder.
+      // See DEMOS in src/components/Projects.tsx.
+      demo: "data-analytics",
       description:
         "Built a fully functional data analytics chatbot with a data pipeline that helps with data analysis generating complex SQL queries, converting data to csv, generating graphs and PowerPoint presentations while managing chat history and user authentication.",
       github: "https://github.com/amruuta/DataAnalysisAgent",
@@ -134,6 +138,25 @@ export const portfolioData = {
         "Pandas",
         "React",
         "Redis",
+      ],
+    },
+    {
+      name: "AI Meeting Copilot – Real-Time RAG Assistant",
+      shortName: "AI Meeting Copilot",
+      demo: "presenter-assistant",
+      description:
+        "Built a real-time voice-to-text AI agent that eliminates mid-call scrambling for answers already in a presenter's own documents — capturing system-level audio to stay platform-agnostic across Zoom, Teams and Meet with no proprietary SDK, license or vendor lock-in; it transcribes via Whisper ASR, auto-detects participant questions, and streams RAG-grounded answers with inline source citations to a private UI over WebSockets, backed by a pluggable vector search layer (FAISS / NumPy) and a provider-agnostic multi-LLM abstraction (Claude, Groq, on-device Ollama).",
+      github: "https://github.com/amruuta/ai-meeting-assistant",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "WebSockets",
+        "Whisper (ASR)",
+        "RAG",
+        "VectorDB",
+        "Prompt Engineering",
+        "LLM",
+        "React",
       ],
     },
   ],
