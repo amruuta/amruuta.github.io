@@ -1,5 +1,6 @@
 ﻿import { motion } from 'framer-motion';
 import Container from './ui/Container';
+import Magnetic from './ui/Magnetic';
 import HeroTerminal from './HeroTerminal';
 import { portfolioData } from '../data/portfolioData';
 import { fadeInUp, staggerContainer, viewport } from '../lib/animations';
@@ -96,6 +97,7 @@ export default function Hero() {
           >
             {/* Get In Touch — solid red */}
             <motion.div variants={fadeInUp} custom={0.4}>
+              <Magnetic>
               <motion.a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black font-black text-xs uppercase tracking-widest text-white"
@@ -113,10 +115,12 @@ export default function Hero() {
                 </svg>
                 Get In Touch
               </motion.a>
+              </Magnetic>
             </motion.div>
 
             {/* View Experience — solid violet */}
             <motion.div variants={fadeInUp} custom={0.45}>
+              <Magnetic>
               <motion.a
                 href="#experience"
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black font-black text-xs uppercase tracking-widest text-white"
@@ -134,10 +138,12 @@ export default function Hero() {
                 </svg>
                 View Experience
               </motion.a>
+              </Magnetic>
             </motion.div>
 
             {/* Resume — solid amber, download */}
             <motion.div variants={fadeInUp} custom={0.5}>
+              <Magnetic>
               <motion.a
                 href={(portfolioData.personal as any).resume || '#'}
                 download="AmrutaBendale_SoftwareDeveloper.pdf"
@@ -157,6 +163,7 @@ export default function Hero() {
                 </svg>
                 Resume
               </motion.a>
+              </Magnetic>
             </motion.div>
           </motion.div>
 

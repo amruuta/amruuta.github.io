@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
-interface MeetingCopilotMockProps {
+interface PresenterAssistantMockProps {
   isDark: boolean;
   accent: string;
 }
@@ -48,7 +48,7 @@ const ANSWERS = [
 const PHASE_MS = 1250;
 const PHASE_COUNT = 12; // last couple of phases hold the finished state
 
-export default function MeetingCopilotMock({ isDark, accent }: MeetingCopilotMockProps) {
+export default function PresenterAssistantMock({ isDark, accent }: PresenterAssistantMockProps) {
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState(0);
 

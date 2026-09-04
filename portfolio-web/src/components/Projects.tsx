@@ -5,14 +5,14 @@ import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
 import { fadeInUp, viewport } from '../lib/animations';
 import { useTheme } from '../lib/ThemeContext';
-import MeetingCopilotMock from './MeetingCopilotMock';
+import PresenterAssistantMock from './PresenterAssistantMock';
 import DataAnalyticsMock from './DataAnalyticsMock';
 
 // Each project's folder holds a live, self-playing replica of that app's UI.
 // `demo` in portfolioData picks which one.
 const DEMOS: Record<string, (p: { isDark: boolean; accent: string }) => JSX.Element> = {
   'data-analytics': DataAnalyticsMock,
-  'presenter-assistant': MeetingCopilotMock,
+  'presenter-assistant': PresenterAssistantMock,
 };
 
 // ─── Folder palette ─────────────────────────────────────────────────────────
@@ -62,6 +62,10 @@ export default function Projects() {
 
   // null = every folder closed (only reachable in the mobile accordion).
   const [selected, setSelected] = useState<number | null>(0);
+  // Bumping this remounts whichever demo is currently on screen, restarting
+  // its animation from the top — the demos already loop on their own, this
+  // just gives an explicit "play it again" control.
+  const [replayTick, setReplayTick] = useState(0);
 
   const incomingIdx = projects.length;
   const desktopIdx = selected ?? 0;
@@ -133,22 +137,48 @@ export default function Projects() {
       <div className={`grid gap-5 p-4 sm:p-5 ${stacked ? '' : 'lg:grid-cols-[1.5fr_1fr]'}`}>
         {/* ── The taped screen ── */}
         <div className="flex flex-col justify-center gap-3">
-          {/* Repo name, top-left above the demo */}
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="self-start inline-flex items-center gap-2 px-2.5 py-1.5 border-[3px] no-underline font-mono font-bold text-[0.72rem] tracking-tight transition-transform hover:-translate-y-0.5"
-            style={{
-              borderColor: LINE,
-              backgroundColor: folder.accent,
-              color: T.onAccent,
-              boxShadow: '3px 3px 0 rgba(0,0,0,0.9)',
-            }}
-          >
-            <FolderGlyph color={T.onAccent} />
-            /{repoName}
-          </a>
+          {/* Repo name + replay control, top row above the demo — kept above
+              the washi tape entirely so neither ever sits over the screen. */}
+          <div className="flex items-center justify-between gap-2">
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-2.5 py-1.5 border-[3px] no-underline font-mono font-bold text-[0.72rem] tracking-tight transition-transform hover:-translate-y-0.5"
+              style={{
+                borderColor: LINE,
+                backgroundColor: folder.accent,
+                color: T.onAccent,
+                boxShadow: '3px 3px 0 rgba(0,0,0,0.9)',
+              }}
+            >
+              <FolderGlyph color={T.onAccent} />
+              /{repoName}
+            </a>
+
+            {Demo && (
+              <motion.button
+                type="button"
+                onClick={() => setReplayTick((t) => t + 1)}
+                aria-label="Replay demo animation"
+                title="Replay animation"
+                className="flex-shrink-0 flex items-center justify-center w-7 h-7 border-[3px]"
+                style={{
+                  borderColor: LINE,
+                  backgroundColor: folder.accent,
+                  color: T.onAccent,
+                  boxShadow: '3px 3px 0 rgba(0,0,0,0.9)',
+                }}
+                whileHover={{ y: -1, boxShadow: '4px 4px 0 rgba(0,0,0,0.9)' }}
+                whileTap={reduce ? undefined : { rotate: 180, transition: { duration: 0.35 } }}
+                transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style={{ marginLeft: 1 }}>
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </motion.button>
+            )}
+          </div>
 
           <motion.div
             className="relative"
@@ -174,7 +204,7 @@ export default function Projects() {
               className="border-4 p-2 overflow-hidden"
               style={{ borderColor: LINE, backgroundColor: T.mount, boxShadow: '7px 7px 0 rgba(0,0,0,0.85)' }}
             >
-              {Demo && <Demo isDark={isDark} accent={folder.accent} />}
+              {Demo && <Demo key={`${project.demo}-${replayTick}`} isDark={isDark} accent={folder.accent} />}
             </div>
           </motion.div>
         </div>
