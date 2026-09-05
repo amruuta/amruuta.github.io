@@ -71,7 +71,15 @@ function RoleCard({ job, idx, isLast, accent, bg, isDark, reduce, scrollDir }: R
   // once it leaves, in either scroll direction. Watching the whole card (not
   // just its header) means it stays open the entire time it's on screen, so
   // scrolling back up re-opens the last card first and works its way back.
-  const inView = useInView(cardRef, { once: false, margin: '-100px 0px -100px 0px' });
+  // Opens once, on the way in, and stays open.
+  //
+  // Closing a card when it scrolled out of view collapsed the section by ~780px
+  // mid-scroll, which shrank the document under the reader and threw the page
+  // straight past this section into Projects — and once collapsed the cards
+  // never came back, so scrolling up showed nothing. Latching them open means
+  // the only height change happens as a card enters from below, which pushes
+  // content down *below* the reading position instead of yanking it up.
+  const inView = useInView(cardRef, { once: true, margin: '0px 0px -15% 0px' });
   const open = reduce ? true : inView;
 
   const borderColor = isDark ? '#E5E7EB' : '#000000';
