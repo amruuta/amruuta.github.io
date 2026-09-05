@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 interface DemoProps {
   isDark: boolean;
   accent: string;
+  /** Fired once the demo finishes a full pass of its phase loop. */
+  onCycleComplete?: () => void;
 }
 
 // A miniature, self-playing replica of the Data Analysis Agent workspace: a
@@ -20,13 +22,29 @@ const BARS = [
 const PHASE_MS = 1250;
 const PHASE_COUNT = 10;
 
-export default function DataAnalyticsMock({ isDark, accent }: DemoProps) {
+export default function DataAnalyticsMock({ isDark, accent, onCycleComplete }: DemoProps) {
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState(0);
 
+  // Kept in a ref so the completion callback can fire outside the state
+  // updater — calling it inside would be a side effect React may double-invoke.
+  const phaseRef = useRef(0);
+  const onDoneRef = useRef(onCycleComplete);
+  onDoneRef.current = onCycleComplete;
+
   useEffect(() => {
     if (reduce) return;
-    const id = setInterval(() => setPhase((p) => (p + 1) % PHASE_COUNT), PHASE_MS);
+    const id = setInterval(() => {
+      const next = phaseRef.current + 1;
+      if (next >= PHASE_COUNT) {
+        phaseRef.current = 0;
+        setPhase(0);
+        onDoneRef.current?.();
+      } else {
+        phaseRef.current = next;
+        setPhase(next);
+      }
+    }, PHASE_MS);
     return () => clearInterval(id);
   }, [reduce]);
 

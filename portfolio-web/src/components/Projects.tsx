@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
@@ -10,7 +10,10 @@ import DataAnalyticsMock from './DataAnalyticsMock';
 
 // Each project's folder holds a live, self-playing replica of that app's UI.
 // `demo` in portfolioData picks which one.
-const DEMOS: Record<string, (p: { isDark: boolean; accent: string }) => JSX.Element> = {
+const DEMOS: Record<
+  string,
+  (p: { isDark: boolean; accent: string; onCycleComplete?: () => void }) => JSX.Element
+> = {
   'data-analytics': DataAnalyticsMock,
   'presenter-assistant': PresenterAssistantMock,
 };
@@ -69,6 +72,30 @@ export default function Projects() {
 
   const incomingIdx = projects.length;
   const desktopIdx = selected ?? 0;
+
+  const sectionRef = useRef<HTMLElement>(null);
+  // Demos only run once the section is actually on screen, so the animation is
+  // at frame one when you arrive instead of caught mid-loop.
+  const sectionInView = useInView(sectionRef, { margin: '0px 0px -20% 0px' });
+
+  const tabCount = projects.length + 1;
+
+  // Each demo plays one full pass, then hands over to the next tab. Driving it
+  // off the animation (rather than scroll position) means you always start on
+  // Data Analytics and always see a complete run before it moves on — scroll
+  // mapping skipped past whole tabs because the section is only ~900px tall.
+  const advance = useCallback(() => {
+    setSelected((cur) => ((cur ?? 0) + 1) % tabCount);
+  }, [tabCount]);
+
+  // The "Projects incoming" card has no demo to finish, so give it a fixed
+  // beat before wrapping back round to the start.
+  useEffect(() => {
+    if (reduce || !sectionInView) return;
+    if (desktopIdx !== incomingIdx) return;
+    const id = setTimeout(advance, 5000);
+    return () => clearTimeout(id);
+  }, [reduce, sectionInView, desktopIdx, incomingIdx, advance]);
 
   const labelOf = (idx: number) =>
     idx === incomingIdx ? 'Projects incoming' : projects[idx].shortName ?? projects[idx].name;
@@ -204,7 +231,14 @@ export default function Projects() {
               className="border-4 p-2 overflow-hidden"
               style={{ borderColor: LINE, backgroundColor: T.mount, boxShadow: '7px 7px 0 rgba(0,0,0,0.85)' }}
             >
-              {Demo && <Demo key={`${project.demo}-${replayTick}`} isDark={isDark} accent={folder.accent} />}
+              {Demo && sectionInView && (
+                <Demo
+                  key={`${project.demo}-${replayTick}`}
+                  isDark={isDark}
+                  accent={folder.accent}
+                  onCycleComplete={stacked ? undefined : advance}
+                />
+              )}
             </div>
           </motion.div>
         </div>
@@ -329,7 +363,7 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="py-24 sm:py-32">
+    <section id="projects" className="py-24 sm:py-32" ref={sectionRef}>
       <Container>
         <SectionHeading label="What I've Built" title="Projects" />
 
