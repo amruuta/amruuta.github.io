@@ -13,15 +13,6 @@
   }
 }
 
-@keyframes idleGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.15), inset 0 0 0 1px rgba(37, 99, 235, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.25), inset 0 0 0 1px rgba(37, 99, 235, 0.2);
-  }
-}
-
 @keyframes gradientFlow {
   0% {
     background-position: 0% 50%;
