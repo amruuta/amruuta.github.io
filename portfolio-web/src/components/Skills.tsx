@@ -3,7 +3,14 @@ import { useRef } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import Container from './ui/Container';
 import SectionHeading from './ui/SectionHeading';
+import { ParticleCard, GlobalSpotlight } from './ui/MagicBento';
 import workingImg from '../assets/working_inverted.png';
+
+// Effect-only wrapper: `magic-bento-card` is what the spotlight queries and
+// what carries the glow variables; `--bare` strips the bento card's own
+// background/border so the existing layout shows through unchanged.
+const FX_CLASS = 'magic-bento-card magic-bento-card--bare magic-bento-card--border-glow';
+const GLOW_COLOR = '132, 0, 255';
 
 type SkillsData = Record<string, string[]>;
 
@@ -62,11 +69,13 @@ function CategoryBlock({ cat, catIdx, skills, isInView }: { cat: { key: string; 
 export default function Skills() {
   const { skills } = portfolioData as { skills: SkillsData };
   const ref = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
     <section id="skills" className="py-14 sm:py-20" ref={ref}>
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative bento-section" style={{ zIndex: 1 }}>
+        <GlobalSpotlight gridRef={gridRef} spotlightRadius={300} glowColor={GLOW_COLOR} />
         <Container>
           <SectionHeading
             label="Expertise"
@@ -75,7 +84,10 @@ export default function Skills() {
           />
 
           {/* Grid wrapper is relative so image is bounded to it */}
-          <div className="-mt-6 sm:mt-0 relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto">
+          <div
+            ref={gridRef}
+            className="-mt-6 sm:mt-0 relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto"
+          >
             {/* Background image — left 3 columns only, full grid height */}
             <motion.img
               src={workingImg}
@@ -91,14 +103,35 @@ export default function Skills() {
             {/* Column 1: Programming Languages + Agentic AI stacked */}
             <div className="flex flex-col gap-4 sm:gap-6" style={{ position: 'relative', zIndex: 1 }}>
               {col1.map((cat, i) => (
-                <CategoryBlock key={cat.key} cat={cat} catIdx={i} skills={skills} isInView={isInView} />
+                <ParticleCard
+                  key={cat.key}
+                  className={FX_CLASS}
+                  style={{ '--glow-color': GLOW_COLOR } as React.CSSProperties}
+                  glowColor={GLOW_COLOR}
+                  particleCount={12}
+                  enableTilt
+                  enableMagnetism
+                  clickEffect
+                >
+                  <CategoryBlock cat={cat} catIdx={i} skills={skills} isInView={isInView} />
+                </ParticleCard>
               ))}
             </div>
 
             {/* Columns 2–4 */}
             {col2to4.map((cat, i) => (
               <div key={cat.key} style={{ position: 'relative', zIndex: 1 }}>
-                <CategoryBlock cat={cat} catIdx={i + 2} skills={skills} isInView={isInView} />
+                <ParticleCard
+                  className={FX_CLASS}
+                  style={{ '--glow-color': GLOW_COLOR } as React.CSSProperties}
+                  glowColor={GLOW_COLOR}
+                  particleCount={12}
+                  enableTilt
+                  enableMagnetism
+                  clickEffect
+                >
+                  <CategoryBlock cat={cat} catIdx={i + 2} skills={skills} isInView={isInView} />
+                </ParticleCard>
               </div>
             ))}
           </div>

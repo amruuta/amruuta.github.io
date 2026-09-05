@@ -145,7 +145,7 @@ export const portfolioData = {
       shortName: "AI Meeting Assistant",
       demo: "presenter-assistant",
       description:
-        "Built a real-time voice-to-text AI agent that eliminates mid-call scrambling for answers already in a presenter's own documents — capturing system-level audio to stay platform-agnostic across Zoom, Teams and Meet with no proprietary SDK, license or vendor lock-in; it transcribes via Whisper ASR, auto-detects participant questions, and streams RAG-grounded answers with inline source citations to a private UI over WebSockets, backed by a pluggable vector search layer (FAISS / NumPy) and a provider-agnostic multi-LLM abstraction (Claude, Groq, on-device Ollama).",
+        "Built a real-time voice-to-text AI agent that surfaces answers from a presenter's own documents mid-call — captures system-level audio to run on Zoom, Teams and Meet with no proprietary SDK or vendor lock-in, transcribes via Whisper ASR, auto-detects participant questions, and streams RAG-grounded answers with source citations to a private UI over WebSockets; pluggable vector search (FAISS/NumPy) and a provider-agnostic multi-LLM layer.",
       github: "https://github.com/amruuta/ai-meeting-assistant",
       technologies: [
         "Python",
