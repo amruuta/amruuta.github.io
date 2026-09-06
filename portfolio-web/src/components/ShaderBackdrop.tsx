@@ -37,6 +37,8 @@ export interface ShaderConfig {
   reflection: number;
   /** How far past the viewport to overscan, hiding the plane's own edge. */
   overscan: { top: string; bottom: string; left: string; right: string };
+  /** Scales the pointer-driven camera lean; lower for zoomed-in framings. */
+  reactScale: number;
 }
 
 interface ShaderBackdropProps {

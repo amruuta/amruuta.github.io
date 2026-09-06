@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Mirrors the navbar's "AB" mark: electric-blue tile, black keyline and
+       hard offset shadow, matching the site's neo-brutalist language. -->
+  <rect x="5" y="7" width="24" height="24" fill="#000000"/>
+  <rect x="2" y="4" width="24" height="24" fill="#2563EB" stroke="#000000" stroke-width="2.5"/>
+  <text x="14" y="21.5" font-family="Archivo Black, Arial Black, Arial, sans-serif"
+        font-size="12.5" font-weight="900" fill="#FFFFFF" text-anchor="middle"
+        letter-spacing="-0.5">AB</text>
+</svg>

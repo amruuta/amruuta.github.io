@@ -5,7 +5,7 @@ export const portfolioData = {
     email: "bendaleamruta2000@gmail.com",
     linkedin: "https://www.linkedin.com/in/amruta-bendale",
     portfolio: "https://amruuta.github.io",
-    github: "",
+    github: "https://github.com/amruuta",
     phone: "+91-8237513503",
     medium: "",
     resume: import.meta.env.VITE_RESUME_URL,

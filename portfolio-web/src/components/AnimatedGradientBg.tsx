@@ -39,6 +39,8 @@ const CONFIG: Record<'light' | 'dark', ShaderConfig> = {
     // This framing puts the plane's horizon near the bottom of the canvas, so
     // it needs generous overscan to push that edge off-screen.
     overscan: { top: '-20%', bottom: '-35%', left: '-8%', right: '-8%' },
+    // Wide, gentle framing — takes the camera lean at full strength.
+    reactScale: 1,
   },
   // Muted slate/lavender, zoomed right into the surface.
   dark: {
@@ -67,6 +69,9 @@ const CONFIG: Record<'light' | 'dark', ShaderConfig> = {
     // Zoomed to 9.1, so the plane already fills the frame — only a small
     // margin is needed.
     overscan: { top: '-4%', bottom: '-4%', left: '-4%', right: '-4%' },
+    // At 9.1x zoom the same angle delta sweeps a lot more of the frame, so the
+    // lean is scaled well down to stay subtle rather than lurching.
+    reactScale: 0.28,
   },
 };
 
@@ -117,17 +122,22 @@ export default function AnimatedGradientBg() {
           or before the *current* theme's shader has loaded even once. Light's
           shader is a wide, smooth, grain-free sweep, so a matched static
           gradient reads as "the same background" during that handover. Dark's
-          shader is heavily grained and a tight, constantly-shifting zoomed
-          blob — no flat gradient looks like that, so it holds on plain black
-          (the same colour as html.dark's base) instead: a neutral loading
-          state, not a second design. */}
+          shader is heavily grained and a tight zoomed blob, so its stand-in
+          pairs a matching radial mass with a grain overlay — a flat colour
+          there just read as a blank void while three.js downloaded. */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
           background: isDark
-            ? '#0F0F0F'
+            ? // Was flat #0F0F0F, which meant a fresh dark load showed a blank
+              // void for the ~2.5s the shader took to arrive. This mirrors the
+              // dark waterPlane's actual composition — near-black field with
+              // the purple-blue mass low and left — so the wait looks like the
+              // background rather than like nothing. Grain is layered over it
+              // below, since that texture is most of what the dark shader is.
+              'radial-gradient(115% 85% at 16% 82%, #3d3480 0%, #241f52 30%, #14121f 58%, #0d0d12 100%)'
             : // orange-red mass low and left, easing to muted violet upper-right
               // — the waterPlane's composition, not just its average colour
               'radial-gradient(140% 110% at 10% 90%, #e8490c 0%, #de4d22 38%, #c85a40 66%, #a56a62 86%, #8e6d78 100%)',
@@ -135,6 +145,25 @@ export default function AnimatedGradientBg() {
           transition: 'opacity 420ms ease-out',
         }}
       />
+
+      {/* Grain, dark only. The dark shader's defining texture is its noise, so
+          without this the stand-in reads as a flat gradient rather than as the
+          same surface. SVG turbulence keeps it to a data URI — no asset. */}
+      {isDark && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")",
+            opacity: ready ? 0 : 0.22,
+            mixBlendMode: 'overlay',
+            transition: 'opacity 420ms ease-out',
+            pointerEvents: 'none',
+          }}
+        />
+      )}
 
       {/* Both waterPlanes are mounted together and never torn down — only one
           is ever visible, picked by opacity. Re-keying this on theme (as an
@@ -154,7 +183,11 @@ export default function AnimatedGradientBg() {
               transition: 'opacity 420ms ease-out',
             }}
           >
-            <ShaderBackdrop config={CONFIG.light} animate={!reduce} onReady={() => setReadyLight(true)} />
+            <ShaderBackdrop
+              config={CONFIG.light}
+              animate={!reduce}
+              onReady={() => setReadyLight(true)}
+            />
           </div>
           <div
             style={{
@@ -164,7 +197,11 @@ export default function AnimatedGradientBg() {
               transition: 'opacity 420ms ease-out',
             }}
           >
-            <ShaderBackdrop config={CONFIG.dark} animate={!reduce} onReady={() => setReadyDark(true)} />
+            <ShaderBackdrop
+              config={CONFIG.dark}
+              animate={!reduce}
+              onReady={() => setReadyDark(true)}
+            />
           </div>
         </Suspense>
       )}

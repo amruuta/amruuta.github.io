@@ -14,7 +14,15 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-16 pb-12 overflow-hidden"
     >
       <Container className="w-full relative py-2">
-        <motion.div 
+        {/* The page had no h1 at all — the name only existed inside the
+            terminal's animated boot sequence, which is decorative text that
+            arrives late and gets rewritten. This gives crawlers and screen
+            readers a real document heading without touching the visual design. */}
+        <h1 className="sr-only">
+          {portfolioData.personal.name} — {portfolioData.personal.title}
+        </h1>
+
+        <motion.div
           className="w-full"
           style={{ maxWidth: '900px', margin: '0 auto' }}
           variants={staggerContainer}

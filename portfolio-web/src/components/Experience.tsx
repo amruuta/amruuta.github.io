@@ -15,10 +15,8 @@ const companyLogos: Record<string, { src: string; bg: string }> = {
   'Persistent Systems': { src: logoPersistent, bg: '#ffffff' },
 };
 
-// Tracks which way the page is actually being scrolled, so the rail's glow
-// can travel in the same direction the user is moving through the timeline —
-// downward on the way down, upward on the way back up — instead of always
-// animating top-to-bottom regardless of direction.
+// Tracks which way the page is being scrolled, so the rail's glow travels in
+// the same direction the reader is moving through the timeline.
 function useScrollDirection() {
   const [dir, setDir] = useState<'down' | 'up'>('down');
 
