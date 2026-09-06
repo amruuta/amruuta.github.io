@@ -82,27 +82,23 @@ function hasWebGL() {
 export default function AnimatedGradientBg() {
   const { isDark } = useTheme();
   const [enabled, setEnabled] = useState(false);
-  const [ready, setReady] = useState(false);
+  // Tracked per theme and never reset once true: each shader instance stays
+  // mounted for the component's whole lifetime (see below), so once a theme
+  // has loaded, re-visiting it is instant — no re-init, no gap.
+  const [readyLight, setReadyLight] = useState(false);
+  const [readyDark, setReadyDark] = useState(false);
   const [reduce, setReduce] = useState(false);
 
   useEffect(() => {
     setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     if (!hasWebGL()) return;
-    // Defer mounting until the browser is idle so the shader chunk never
-    // competes with the initial render.
-    const idle = (window as unknown as {
-      requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
-    }).requestIdleCallback;
-    if (idle) {
-      const id = idle(() => setEnabled(true), { timeout: 2000 });
-      return () => (window as unknown as { cancelIdleCallback?: (h: number) => void })
-        .cancelIdleCallback?.(id);
-    }
-    const t = setTimeout(() => setEnabled(true), 400);
-    return () => clearTimeout(t);
+    // Kick the shader chunk off straight away. Waiting for requestIdleCallback
+    // held it back ~1.5s, which meant the fallback sat on screen long enough to
+    // read as "a different background that then changed".
+    setEnabled(true);
   }, []);
 
-  const config = isDark ? CONFIG.dark : CONFIG.light;
+  const ready = isDark ? readyDark : readyLight;
 
   return (
     <div
@@ -117,52 +113,58 @@ export default function AnimatedGradientBg() {
         overflow: 'hidden',
       }}
     >
-      {/* Base layer — the original CSS gradient. Paints instantly, and stays
-          visible underneath as the shader's fallback. */}
+      {/* Base layer — paints instantly and is what shows if WebGL is missing,
+          or before the *current* theme's shader has loaded even once. Light's
+          shader is a wide, smooth, grain-free sweep, so a matched static
+          gradient reads as "the same background" during that handover. Dark's
+          shader is heavily grained and a tight, constantly-shifting zoomed
+          blob — no flat gradient looks like that, so it holds on plain black
+          (the same colour as html.dark's base) instead: a neutral loading
+          state, not a second design. */}
       <div
-        className="animated-gradient-bg"
+        aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
-          background: `linear-gradient(
-            120deg,
-            var(--animated-gradient-stop-1, #D4623E),
-            var(--animated-gradient-stop-2, #D4A85C),
-            var(--animated-gradient-stop-3, #D07A48),
-            var(--animated-gradient-stop-4, #A96EC4),
-            var(--animated-gradient-stop-5, #8A6AAF),
-            var(--animated-gradient-stop-6, #5F7ED4),
-            var(--animated-gradient-stop-1, #D4623E)
-          )`,
-          backgroundSize: 'var(--animated-gradient-size, 300%) var(--animated-gradient-size, 300%)',
-          backgroundPosition: '50% 50%',
-          animation: 'gradientFlow var(--animated-gradient-duration, 30s) ease-in-out infinite',
-          willChange: 'background-position',
+          background: isDark
+            ? '#0F0F0F'
+            : // orange-red mass low and left, easing to muted violet upper-right
+              // — the waterPlane's composition, not just its average colour
+              'radial-gradient(140% 110% at 10% 90%, #e8490c 0%, #de4d22 38%, #c85a40 66%, #a56a62 86%, #8e6d78 100%)',
+          opacity: ready ? 0 : 1,
+          transition: 'opacity 420ms ease-out',
         }}
       />
 
-      {/* WebGL waterPlane, faded in once it has actually drawn a frame. */}
+      {/* Both waterPlanes are mounted together and never torn down — only one
+          is ever visible, picked by opacity. Re-keying this on theme (as an
+          earlier version did) unmounted and re-initialised WebGL on every
+          switch, which is real work and produced a visible black gap each
+          time. Keeping both alive means a switch is just a CSS opacity flip:
+          instant once each side has loaded once. The cost is a second live
+          WebGL context idling off-screen — worth it for a toggle that's
+          supposed to feel immediate. */}
       {enabled && (
         <Suspense fallback={null}>
           <div
             style={{
               position: 'absolute',
-              // Overscanned past the viewport so the plane's own edge falls
-              // off-screen instead of showing as a seam. How much is needed
-              // depends on the framing, so it comes from the theme's config.
-              ...config.overscan,
-              opacity: ready ? 1 : 0,
-              transition: 'opacity 900ms ease-out',
+              ...CONFIG.light.overscan,
+              opacity: !isDark && readyLight ? 1 : 0,
+              transition: 'opacity 420ms ease-out',
             }}
           >
-            <ShaderBackdrop
-              // Remount on theme change so the shader picks up the new
-              // camera/rotation cleanly rather than tweening between framings.
-              key={isDark ? 'dark' : 'light'}
-              config={config}
-              animate={!reduce}
-              onReady={() => setReady(true)}
-            />
+            <ShaderBackdrop config={CONFIG.light} animate={!reduce} onReady={() => setReadyLight(true)} />
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              ...CONFIG.dark.overscan,
+              opacity: isDark && readyDark ? 1 : 0,
+              transition: 'opacity 420ms ease-out',
+            }}
+          >
+            <ShaderBackdrop config={CONFIG.dark} animate={!reduce} onReady={() => setReadyDark(true)} />
           </div>
         </Suspense>
       )}

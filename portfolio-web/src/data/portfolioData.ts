@@ -1,7 +1,7 @@
 export const portfolioData = {
   personal: {
     name: "Amruta Bendale",
-    title: "Backend Engineer",
+    title: "Full Stack AI Engineer",
     email: "bendaleamruta2000@gmail.com",
     linkedin: "https://www.linkedin.com/in/amruta-bendale",
     portfolio: "https://amruuta.github.io",
@@ -11,7 +11,7 @@ export const portfolioData = {
     resume: import.meta.env.VITE_RESUME_URL,
     location: "India",
     summary:
-      "Backend Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.",
+      "Full Stack AI Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.",
   },
 
   skills: {
@@ -172,9 +172,9 @@ export const portfolioData = {
   ],
 
   about: {
-    bio: "Backend Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.",
+    bio: "Full Stack AI Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.",
     stats: [
-      { value: "4+", label: "Years", desc: "Backend Engineering" },
+      { value: "4+", label: "Years", desc: "Full Stack AI Engineering" },
       { value: "2", label: "Companies", desc: "Production Systems" },
       { value: "26", label: "Instances", desc: "Modernized & Deployed" },
     ],

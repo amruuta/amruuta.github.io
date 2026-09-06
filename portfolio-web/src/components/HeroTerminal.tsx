@@ -20,7 +20,7 @@ const BOOT_LINES: TerminalLine[] = [
 const IDENTITY_LINES: TerminalLine[] = [
   { id: 'identity-1', text: '> Hi! I am', color: 'default' },
   { id: 'identity-2', text: 'AMRUTA BENDALE', color: 'highlight' },
-  { id: 'identity-3', text: '> Backend Engineer', color: 'subtitle' },
+  { id: 'identity-3', text: '> Full Stack AI Engineer', color: 'subtitle' },
 ];
 
 export default function HeroTerminal() {

@@ -13,18 +13,6 @@
   }
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* Portrait flip shine sweep — left to right */
 @keyframes portraitShine {
   0% {
@@ -113,15 +101,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #e6bfd1;
-
-    --animated-gradient-stop-1: #D4623E;
-    --animated-gradient-stop-2: #D4A85C;
-    --animated-gradient-stop-3: #D07A48;
-    --animated-gradient-stop-4: #A96EC4;
-    --animated-gradient-stop-5: #8A6AAF;
-    --animated-gradient-stop-6: #5F7ED4;
-    --animated-gradient-size: 300%;
-    --animated-gradient-duration: 30s;
   }
 
   body {
@@ -264,13 +243,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  html,
-  html.dark {
-    --animated-gradient-duration: 14s;
-  }
-}
-
 /* ============================================================
    DARK MODE GLOBAL OVERRIDES
    ============================================================ */
@@ -278,15 +250,6 @@
 html.dark {
   background-color: #0F0F0F;
   color-scheme: dark;
-
-  --animated-gradient-stop-1: #020617;
-  --animated-gradient-stop-2: #0D6B7D;
-  --animated-gradient-stop-3: #1E3A8A;
-  --animated-gradient-stop-4: #2D1F4D;
-  --animated-gradient-stop-5: #1E293B;
-  --animated-gradient-stop-6: #4A2C2C;
-  --animated-gradient-size: 350%;
-  --animated-gradient-duration: 30s;
 }
 
 html.dark body {

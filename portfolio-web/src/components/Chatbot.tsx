@@ -18,7 +18,7 @@ const getFallbackResponse = (message: string) => {
   }
 
   if (lowerMessage.includes("hi") || lowerMessage.includes("hello")) {
-    return `👋 Hi! I'm Amruta's AI assistant. Amruta is a Backend Engineer with 4 years of experience building and modernizing financial systems using Java, Spring Boot, Python, and exploring Agentic AI. Feel free to ask about her experience, skills, projects, or anything else!`;
+    return `👋 Hi! I'm Amruta's AI assistant. Amruta is a Full Stack AI Engineer with 4 years of experience building and modernizing financial systems using Java, Spring Boot, Python, and exploring Agentic AI. Feel free to ask about her experience, skills, projects, or anything else!`;
   }
 
   if (lowerMessage.includes("contact") || lowerMessage.includes("email") || lowerMessage.includes("reach")) {
@@ -50,7 +50,7 @@ const getFallbackResponse = (message: string) => {
   }
 
   if (lowerMessage.includes("about")) {
-    return `👤 **About Amruta**\n\nAmruta is a Backend Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.`;
+    return `👤 **About Amruta**\n\nAmruta is a Full Stack AI Engineer with 4+ years of experience building and modernizing enterprise systems for trading, risk management, and AML transaction monitoring. Skilled in distributed backend services, event-driven architectures, and ETL pipelines for high-throughput enterprise workflows. Delivered backend features from system design to production while migrating legacy platforms and building full-stack AI applications with Python-based agentic frameworks and modern UI stacks.`;
   }
 
   return `That's a great question! 😊\n\nExplore different sections of Amruta's portfolio:\n\n**📌 Quick Links**\n- 👤 **About** - Background\n- 💻 **Skills** - Technical expertise\n- 💼 **Experience** - Work history\n- 🚀 **Projects** - What Amruta has built\n- 📧 **Contact** - Get in touch\n\nOr ask me something specific about Amruta's Backend or AI experience!`;
