@@ -571,13 +571,44 @@ export default function HeroTerminal() {
             <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
           </div>
 
-          <span style={{ fontFamily: 'Fira Code, Courier New, monospace', fontSize: '0.68rem', color: isDark ? '#4ade80' : '#6B7280', opacity: isDark ? 0.75 : 0.8, letterSpacing: '0.05em' }}>
-            {lastCmd
-              ? `amruta@portfolio ~ $ ${lastCmd}`
-              : booted
-                ? "amruta@portfolio ~ type 'help' · ↑ history"
-                : 'amruta@portfolio ~ $'}
-          </span>
+          {/* flex-1 + min-w-0 lets this shrink instead of forcing the bar wider;
+              nowrap + ellipsis stops it wrapping to a second line and colliding
+              with the dots/replay button, which is what happened on a 390px
+              phone with the longer hint text. The hint itself is also dropped
+              below sm rather than truncated — "history" clipping to "hist…"
+              reads worse than just not showing it when there's no room. */}
+          <div className="flex-1 min-w-0 flex items-baseline justify-center gap-1 px-1.5 overflow-hidden">
+            <span
+              style={{
+                fontFamily: 'Fira Code, Courier New, monospace',
+                fontSize: '0.68rem',
+                color: isDark ? '#4ade80' : '#6B7280',
+                opacity: isDark ? 0.75 : 0.8,
+                letterSpacing: '0.05em',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '100%',
+              }}
+            >
+              {lastCmd ? `amruta@portfolio ~ $ ${lastCmd}` : 'amruta@portfolio ~ $'}
+            </span>
+            {!lastCmd && booted && (
+              <span
+                className="hidden sm:inline"
+                style={{
+                  fontFamily: 'Fira Code, Courier New, monospace',
+                  fontSize: '0.68rem',
+                  color: isDark ? '#4ade80' : '#6B7280',
+                  opacity: isDark ? 0.55 : 0.6,
+                  letterSpacing: '0.05em',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                type 'help' · ↑ history
+              </span>
+            )}
+          </div>
 
           <button
             onClick={handleReplay}
